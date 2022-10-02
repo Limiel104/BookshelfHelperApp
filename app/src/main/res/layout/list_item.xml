@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
 
@@ -20,7 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/itemImg"
-        android:text="title"
         android:textSize="20sp"
         android:paddingVertical="5dp"
         android:paddingHorizontal="2dp"
@@ -33,8 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/itemTitle"
         android:layout_toEndOf="@+id/itemImg"
-        android:padding="3dp"
-        android:text="author" />
+        android:padding="3dp" />
 
     <TextView
         android:id="@+id/itemPublisher"
@@ -42,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/itemAuthor"
         android:layout_toEndOf="@+id/itemImg"
-        android:padding="3dp"
-        android:text="publisher" />
+        android:padding="3dp" />
 
 </RelativeLayout>
+</layout>

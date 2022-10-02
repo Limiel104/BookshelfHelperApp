@@ -9,5 +9,18 @@
         android:id="@+id/listFragment"
         android:name="com.example.bookshelfhelper.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_addEditItemFragment"
+            app:destination="@id/addEditItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditItemFragment"
+        android:name="com.example.bookshelfhelper.AddEditItemFragment"
+        android:label="fragment_add_edit_item"
+        tools:layout="@layout/fragment_add_edit_item" >
+        <action
+            android:id="@+id/action_addEditItemFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
 </navigation>
