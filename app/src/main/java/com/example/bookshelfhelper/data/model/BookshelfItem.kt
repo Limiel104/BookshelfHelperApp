@@ -1,6 +1,6 @@
 package com.example.bookshelfhelper.data.model
 
-abstract class ShelfItem (
+abstract class BookshelfItem (
 
     val title: String,
     val author: String,

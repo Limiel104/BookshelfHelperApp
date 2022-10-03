@@ -18,4 +18,4 @@ class ComicBook(
     type: String,
     language: String,
 
-) : ShelfItem(title, author, publisher, format, type, language) {}
+) : BookshelfItem(title, author, publisher, format, type, language) {}

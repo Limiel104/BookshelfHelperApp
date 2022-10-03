@@ -7,13 +7,13 @@
     <data>
         <variable
             name="listViewModel"
-            type="com.example.bookshelfhelper.ListViewModel" />
+            type="com.example.bookshelfhelper.BookListViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ListFragment">
+    tools:context="BookListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"

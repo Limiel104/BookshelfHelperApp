@@ -8,7 +8,7 @@ import com.example.bookshelfhelper.data.model.Book
 import com.example.bookshelfhelper.data.model.ComicBook
 
 @Database(entities = [Book::class, ComicBook::class], version = 1)
-abstract class ShelfItemDatabase : RoomDatabase() {
+abstract class BookshelfDatabase : RoomDatabase() {
 
     abstract val bookDao: BookDao
     abstract val comicBookDao: ComicBookDao
@@ -17,15 +17,15 @@ abstract class ShelfItemDatabase : RoomDatabase() {
 
     companion object{
         @Volatile
-        private var INSTANCE: ShelfItemDatabase? = null
-        fun getInstance(context: Context): ShelfItemDatabase {
+        private var INSTANCE: BookshelfDatabase? = null
+        fun getInstance(context: Context): BookshelfDatabase {
             synchronized(this){
                 var instance = INSTANCE
                 if (instance == null){
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        ShelfItemDatabase::class.java,
-                        "shelf_item_database"
+                        BookshelfDatabase::class.java,
+                        "bookshelf_database"
                     ).build()
                     INSTANCE = instance
                 }

@@ -3,10 +3,9 @@ package com.example.bookshelfhelper
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.bookshelfhelper.data.model.Book
 import com.example.bookshelfhelper.data.repository.BookRepository
 
-class ListViewModel(private val repository: BookRepository) : ViewModel() {
+class BookListViewModel(private val repository: BookRepository) : ViewModel() {
 
     val books = repository.books //ten obiekt jest obserwowany w listFragmwnt
 
@@ -16,11 +15,4 @@ class ListViewModel(private val repository: BookRepository) : ViewModel() {
         addOrEditButtonText.value = "Dodaj"
         Log.i("TAG","ListViewModel")
     }
-
-//    fun insert(book: Book){
-//
-//    }
-
-
-
 }

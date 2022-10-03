@@ -3,24 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/listFragment">
+    app:startDestination="@id/bookListFragment">
 
     <fragment
-        android:id="@+id/listFragment"
-        android:name="com.example.bookshelfhelper.ListFragment"
+        android:id="@+id/bookListFragment"
+        android:name="com.example.bookshelfhelper.BookListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" >
+        tools:layout="@layout/fragment_book_list" >
         <action
-            android:id="@+id/action_listFragment_to_addEditItemFragment"
-            app:destination="@id/addEditItemFragment" />
+            android:id="@+id/action_bookListFragment_to_addEditBookFragment"
+            app:destination="@id/addEditBookFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addEditItemFragment"
-        android:name="com.example.bookshelfhelper.AddEditItemFragment"
+        android:id="@+id/addEditBookFragment"
+        android:name="com.example.bookshelfhelper.AddEditBookFragment"
         android:label="fragment_add_edit_item"
-        tools:layout="@layout/fragment_add_edit_item" >
-        <action
-            android:id="@+id/action_addEditItemFragment_to_listFragment"
-            app:destination="@id/listFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_add_edit_book" />
 </navigation>

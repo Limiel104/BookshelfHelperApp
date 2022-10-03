@@ -3,8 +3,6 @@ package com.example.bookshelfhelper.data.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-import com.example.bookshelfhelper.data.model.ShelfItem
-
 @Entity(tableName = "books_table")
 open class Book (
 
@@ -17,4 +15,4 @@ open class Book (
     type: String,
     language: String
 
-) : ShelfItem(title, author, publisher, format, type, language) {}
+) : BookshelfItem(title, author, publisher, format, type, language) {}
