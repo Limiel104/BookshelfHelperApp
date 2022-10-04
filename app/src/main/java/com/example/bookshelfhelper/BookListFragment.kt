@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -22,38 +23,15 @@ class BookListFragment : Fragment(){
     private lateinit var bookViewModel: BookListViewModel
     private lateinit var binding: FragmentBookListBinding
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        val binding = FragmentListBinding.bind(view)
-//
-//        binding.recycleView.layoutManager = LinearLayoutManager(requireContext())
-//
-//        val dao = ShelfItemDatabase.getInstance(requireContext()).bookDao
-//        val repository = BookRepository(dao)
-//        val factory = ListViewModelFactory(repository)
-//        bookViewModel = ViewModelProvider(this, factory)[ListViewModel::class.java]
-//        binding.listViewModel = bookViewModel
-//        binding.lifecycleOwner = this
-//
-//        bookViewModel.books.observe(viewLifecycleOwner, Observer {
-//            Log.i("TAG", it.toString())
-//            binding.recycleView.adapter = ListRecycleViewAdapter(it)
-//        })
-//    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         //return super.onCreateView(inflater, container, savedInstanceState)
-        //inflate layout with this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_book_list, container,false)
 
         binding.addOrEditButton.setOnClickListener{
-            //insted of passing with bundle its better to use ViewModel
-            //val bundle = bundleOf("user_input" to binding.)
             if(bookViewModel.updateRequested){
                 val book = bookViewModel.bookToUpdate
                 val passedData = BookListFragmentDirections.actionBookListFragmentToAddEditBookFragment(book)
@@ -62,7 +40,6 @@ class BookListFragment : Fragment(){
             else{
                 it.findNavController().navigate(R.id.action_bookListFragment_to_addEditBookFragment)
             }
-            //it.findNavController().navigate(R.id.action_bookListFragment_to_addEditBookFragment)
         }
 
         binding.recycleView.layoutManager = LinearLayoutManager(requireContext())
@@ -74,11 +51,9 @@ class BookListFragment : Fragment(){
         binding.listViewModel = bookViewModel
         binding.lifecycleOwner = this
 
-//        bookViewModel.books.observe(viewLifecycleOwner, Observer {
-//            Log.i("TAG", it.toString())
-//            Log.i("TAG","eloeo")
-//            binding.recycleView.adapter = ListRecycleViewAdapter(it)
-//        })
+        bookViewModel.isDone.observe(viewLifecycleOwner, Observer {
+                binding.deleteButton.visibility = View.GONE
+        })
 
         displayBooksList()
 
@@ -99,7 +74,14 @@ class BookListFragment : Fragment(){
 
     private fun listItemClicked(book: Book){
         Toast.makeText(requireContext(), "selected item: ${book.title}",Toast.LENGTH_LONG).show()
-        //binding.addOrEditButton
+
+        if(binding.deleteButton.visibility == View.GONE){
+            binding.deleteButton.visibility = View.VISIBLE
+        }
+        else{
+            binding.deleteButton.visibility = View.GONE
+        }
+
         bookViewModel.initUpdate(book)
     }
 

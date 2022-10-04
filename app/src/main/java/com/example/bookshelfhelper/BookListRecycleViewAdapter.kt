@@ -32,10 +32,10 @@ class ListViewHolder(val binding: BookListItemBinding) : RecyclerView.ViewHolder
         binding.itemTitle.text = book.title
         binding.itemAuthor.text = book.author
         binding.itemPublisher.text = book.publisher
+        //binding.bookItemLayout.background.setTint()
 
         binding.bookItemLayout.setOnClickListener {
             selectedItem(book)
-            //tutaj moze funkcjonalnosc usuwania?
         }
     }
 }
