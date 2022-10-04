@@ -18,5 +18,11 @@
         android:id="@+id/addEditBookFragment"
         android:name="com.example.bookshelfhelper.AddEditBookFragment"
         android:label="fragment_add_edit_item"
-        tools:layout="@layout/fragment_add_edit_book" />
+        tools:layout="@layout/fragment_add_edit_book" >
+        <argument
+            android:name="bookToUpdate"
+            app:argType="com.example.bookshelfhelper.data.model.Book"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

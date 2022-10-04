@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bookshelfhelper.data.model.Book
 import com.example.bookshelfhelper.databinding.BookListItemBinding
 
-class ListRecycleViewAdapter(private val booksList: List<Book>) : RecyclerView.Adapter<ListViewHolder>(){
+class ListRecycleViewAdapter(private val booksList: List<Book>,
+                             private val selectedItem:(Book)->Unit)
+    : RecyclerView.Adapter<ListViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -16,19 +18,24 @@ class ListRecycleViewAdapter(private val booksList: List<Book>) : RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        holder.bind(booksList[position] )
+        holder.bind(booksList[position],selectedItem)
     }
 
     override fun getItemCount(): Int {
         return booksList.size
     }
-
 }
 
 class ListViewHolder(val binding: BookListItemBinding) : RecyclerView.ViewHolder(binding.root){
-    fun bind(book: Book){
+
+    fun bind(book: Book, selectedItem:(Book)->Unit){
         binding.itemTitle.text = book.title
         binding.itemAuthor.text = book.author
         binding.itemPublisher.text = book.publisher
+
+        binding.bookItemLayout.setOnClickListener {
+            selectedItem(book)
+            //tutaj moze funkcjonalnosc usuwania?
+        }
     }
 }

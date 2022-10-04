@@ -1,18 +1,21 @@
 package com.example.bookshelfhelper.data.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "books_table")
+@Parcelize
 open class Book (
 
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    title: String,
-    author: String,
-    publisher: String,
-    format: String,
-    type: String,
-    language: String
+    val title: String,
+    val author: String,
+    val publisher: String,
+    val format: String,
+    val type: String,
+    val language: String
 
-) : BookshelfItem(title, author, publisher, format, type, language) {}
+) : Parcelable{}
