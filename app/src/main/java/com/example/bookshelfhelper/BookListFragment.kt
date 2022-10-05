@@ -22,6 +22,7 @@ class BookListFragment : Fragment(){
 
     private lateinit var bookViewModel: BookListViewModel
     private lateinit var binding: FragmentBookListBinding
+    private lateinit var adapter: BookListRecycleViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,13 +37,14 @@ class BookListFragment : Fragment(){
                 val book = bookViewModel.bookToUpdate
                 val passedData = BookListFragmentDirections.actionBookListFragmentToAddEditBookFragment(book)
                 it.findNavController().navigate(passedData)
+                bookViewModel.initUpdate(book) //required for go back action so that buttons are set properly
             }
             else{
                 it.findNavController().navigate(R.id.action_bookListFragment_to_addEditBookFragment)
             }
         }
 
-        binding.recycleView.layoutManager = LinearLayoutManager(requireContext())
+        initRecycleView()
 
         val dao = BookshelfDatabase.getInstance(requireContext()).bookDao
         val repository = BookRepository(dao)
@@ -51,24 +53,29 @@ class BookListFragment : Fragment(){
         binding.listViewModel = bookViewModel
         binding.lifecycleOwner = this
 
-        bookViewModel.isDone.observe(viewLifecycleOwner, Observer {
-                binding.deleteButton.visibility = View.GONE
-        })
-
         displayBooksList()
 
-        return  binding.root
+        bookViewModel.isDone.observe(viewLifecycleOwner, Observer {
+            binding.deleteButton.visibility = View.GONE
+        })
 
+        return  binding.root
+    }
+
+    fun initRecycleView(){
+        binding.recycleView.layoutManager = LinearLayoutManager(requireContext())
+        adapter = BookListRecycleViewAdapter() { selectedItem: Book ->
+            listItemClicked(
+                selectedItem
+            )}
+        binding.recycleView.adapter = adapter
     }
 
     private fun displayBooksList(){
         bookViewModel.books.observe(viewLifecycleOwner, Observer {
             Log.i("TAG", it.toString())
-            binding.recycleView.adapter = ListRecycleViewAdapter(it) { selectedItem: Book ->
-                listItemClicked(
-                    selectedItem
-                )
-            }
+            adapter.setList(it)
+            adapter.notifyDataSetChanged()
         })
     }
 

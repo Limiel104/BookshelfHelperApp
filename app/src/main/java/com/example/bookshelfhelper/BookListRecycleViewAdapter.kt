@@ -1,5 +1,7 @@
 package com.example.bookshelfhelper
 
+import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -7,9 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bookshelfhelper.data.model.Book
 import com.example.bookshelfhelper.databinding.BookListItemBinding
 
-class ListRecycleViewAdapter(private val booksList: List<Book>,
-                             private val selectedItem:(Book)->Unit)
-    : RecyclerView.Adapter<ListViewHolder>(){
+class BookListRecycleViewAdapter(private val selectedItem:(Book)->Unit)
+    : RecyclerView.Adapter<BookListRecycleViewAdapter.ListViewHolder>(){
+
+    private val booksList = ArrayList<Book>()
+    var isItemSelected = false
+    var checkedPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -24,18 +29,56 @@ class ListRecycleViewAdapter(private val booksList: List<Book>,
     override fun getItemCount(): Int {
         return booksList.size
     }
-}
 
-class ListViewHolder(val binding: BookListItemBinding) : RecyclerView.ViewHolder(binding.root){
+    fun setList(books: List<Book>){
+        booksList.clear()
+        booksList.addAll(books)
+    }
 
-    fun bind(book: Book, selectedItem:(Book)->Unit){
-        binding.itemTitle.text = book.title
-        binding.itemAuthor.text = book.author
-        binding.itemPublisher.text = book.publisher
-        //binding.bookItemLayout.background.setTint()
+    inner class ListViewHolder(val binding: BookListItemBinding) : RecyclerView.ViewHolder(binding.root){
 
-        binding.bookItemLayout.setOnClickListener {
-            selectedItem(book)
+        fun bind(book: Book, selectedItem:(Book)->Unit){
+            binding.itemTitle.text = book.title
+            binding.itemAuthor.text = book.author
+            binding.itemPublisher.text = book.publisher
+
+            if(checkedPosition == -1) {
+                binding.bookItemLayout.setBackgroundColor(Color.WHITE)
+            }
+            else {
+                if(checkedPosition == adapterPosition) {
+                    binding.bookItemLayout.setBackgroundColor(Color.BLUE)
+                }
+                else {
+                    binding.bookItemLayout.setBackgroundColor(Color.WHITE)
+                }
+            }
+
+            binding.bookItemLayout.setOnClickListener {
+
+                if(isItemSelected){
+                    if(checkedPosition == adapterPosition){
+                        binding.bookItemLayout.setBackgroundColor(Color.WHITE)
+                        isItemSelected = false
+                        selectedItem(book)
+                    }
+                }
+                else{
+                    binding.bookItemLayout.setBackgroundColor(Color.BLUE)
+
+                    if(checkedPosition != adapterPosition){
+                        notifyItemChanged(checkedPosition)
+                        checkedPosition = adapterPosition
+                    }
+
+                    isItemSelected = true
+                    selectedItem(book)
+                }
+            }
         }
     }
+
+
 }
+
+
