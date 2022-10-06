@@ -18,4 +18,4 @@ open class Book (
     val type: String,
     val language: String
 
-) : Parcelable{}
+) : Parcelable {}

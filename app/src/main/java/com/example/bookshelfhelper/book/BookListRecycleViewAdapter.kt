@@ -1,11 +1,11 @@
-package com.example.bookshelfhelper
+package com.example.bookshelfhelper.book
 
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bookshelfhelper.R
 import com.example.bookshelfhelper.data.model.Book
 import com.example.bookshelfhelper.databinding.BookListItemBinding
 
@@ -18,7 +18,8 @@ class BookListRecycleViewAdapter(private val selectedItem:(Book)->Unit)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding : BookListItemBinding = DataBindingUtil.inflate(layoutInflater, R.layout.book_list_item, parent,false)
+        val binding : BookListItemBinding = DataBindingUtil.inflate(layoutInflater,
+            R.layout.book_list_item, parent,false)
         return ListViewHolder(binding)
     }
 
@@ -70,15 +71,12 @@ class BookListRecycleViewAdapter(private val selectedItem:(Book)->Unit)
                         notifyItemChanged(checkedPosition)
                         checkedPosition = adapterPosition
                     }
-
                     isItemSelected = true
                     selectedItem(book)
                 }
             }
         }
     }
-
-
 }
 
 

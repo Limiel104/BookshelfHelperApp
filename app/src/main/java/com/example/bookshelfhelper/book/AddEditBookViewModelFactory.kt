@@ -1,4 +1,4 @@
-package com.example.bookshelfhelper
+package com.example.bookshelfhelper.book
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -12,5 +12,4 @@ class AddEditBookViewModelFactory (private val repository: BookRepository) : Vie
         }
         throw  IllegalAccessException("Unknown ViewModel Class")
     }
-
 }

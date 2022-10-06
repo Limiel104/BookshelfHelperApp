@@ -7,21 +7,47 @@
 
     <fragment
         android:id="@+id/bookListFragment"
-        android:name="com.example.bookshelfhelper.BookListFragment"
+        android:name="com.example.bookshelfhelper.book.BookListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_book_list" >
         <action
             android:id="@+id/action_bookListFragment_to_addEditBookFragment"
             app:destination="@id/addEditBookFragment" />
+        <action
+            android:id="@+id/action_bookListFragment_to_comicbookListFragment"
+            app:destination="@id/comicbookListFragment" />
     </fragment>
     <fragment
         android:id="@+id/addEditBookFragment"
-        android:name="com.example.bookshelfhelper.AddEditBookFragment"
+        android:name="com.example.bookshelfhelper.book.AddEditBookFragment"
         android:label="fragment_add_edit_item"
         tools:layout="@layout/fragment_add_edit_book" >
         <argument
             android:name="bookToUpdate"
             app:argType="com.example.bookshelfhelper.data.model.Book"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/comicbookListFragment"
+        android:name="com.example.bookshelfhelper.comicbook.ComicBookListFragment"
+        android:label="fragment_comicbook_list"
+        tools:layout="@layout/fragment_comicbook_list" >
+        <action
+            android:id="@+id/action_comicbookListFragment_to_bookListFragment"
+            app:destination="@id/bookListFragment" />
+        <action
+            android:id="@+id/action_comicbookListFragment_to_addEditComicBookFragment"
+            app:destination="@id/addEditComicBookFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditComicBookFragment"
+        android:name="com.example.bookshelfhelper.comicbook.AddEditComicBookFragment"
+        android:label="fragment_add_edit_comic_book"
+        tools:layout="@layout/fragment_add_edit_comic_book" >
+        <argument
+            android:name="comicBookToUpdate"
+            app:argType="com.example.bookshelfhelper.data.model.ComicBook"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>

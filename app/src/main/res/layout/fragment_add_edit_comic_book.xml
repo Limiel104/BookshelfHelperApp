@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    
+
     <data>
         <variable
-            name="addEditBookItemViewModel"
-            type="com.example.bookshelfhelper.book.AddEditBookViewModel" />
+            name="addEditComicBookItemViewModel"
+            type="com.example.bookshelfhelper.comicbook.AddEditComicBookViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Title"
-                android:text="@={addEditBookItemViewModel.inputTitle}"
+                android:text="@={addEditComicBookItemViewModel.inputTitle}"
                 android:inputType="text"
                 android:padding="15dp" />
 
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Author"
-                android:text="@={addEditBookItemViewModel.inputAuthor}"
+                android:text="@={addEditComicBookItemViewModel.inputAuthor}"
                 android:inputType="text"
                 android:padding="15dp" />
 
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Publisher"
-                android:text="@={addEditBookItemViewModel.inputPublisher}"
+                android:text="@={addEditComicBookItemViewModel.inputPublisher}"
                 android:inputType="text"
                 android:padding="15dp" />
 
@@ -58,8 +58,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:src="@drawable/ic_add"
-            android:text="@={addEditBookItemViewModel.addOrEditButtonText}"
-            android:onClick="@{()->addEditBookItemViewModel.saveOrUpdate()}"
+            android:text="@={addEditComicBookItemViewModel.addOrEditButtonText}"
+            android:onClick="@{()->addEditComicBookItemViewModel.saveOrUpdate()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

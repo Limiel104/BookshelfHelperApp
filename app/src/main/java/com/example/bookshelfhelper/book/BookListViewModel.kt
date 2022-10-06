@@ -1,4 +1,4 @@
-package com.example.bookshelfhelper
+package com.example.bookshelfhelper.book
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -14,22 +14,13 @@ class BookListViewModel(private val repository: BookRepository) : ViewModel() {
     val books = repository.books //ten obiekt jest obserwowany w listFragmwnt, lista wszytskich ksiazek
 
     val addOrEditButtonText = MutableLiveData<String>()
-    val isDone = MutableLiveData<Boolean>()
 
     lateinit var bookToUpdate : Book
     var updateRequested = false
 
     init {
-        Log.i("TAG","ListViewModel")
+        Log.i("TAG","BookListViewModel")
         addOrEditButtonText.value = "Add"
-    }
-
-    fun onDelete(){
-
-        delete(bookToUpdate)
-        returnToInitLayout()
-
-        isDone.value = true
     }
 
     fun initUpdate(book: Book){
@@ -50,11 +41,5 @@ class BookListViewModel(private val repository: BookRepository) : ViewModel() {
         addOrEditButtonText.value = "Add"
         updateRequested = false
         bookToUpdate = Book(-1,"","","","","","")
-    }
-
-    fun delete(book: Book){
-        viewModelScope.launch( Dispatchers.IO) {
-            repository.delete(book)
-        }
     }
 }

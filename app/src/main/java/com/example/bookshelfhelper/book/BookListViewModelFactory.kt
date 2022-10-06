@@ -1,4 +1,4 @@
-package com.example.bookshelfhelper
+package com.example.bookshelfhelper.book
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

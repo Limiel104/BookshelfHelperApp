@@ -1,4 +1,4 @@
-package com.example.bookshelfhelper
+package com.example.bookshelfhelper.book
 
 import android.os.Bundle
 import android.util.Log
@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bookshelfhelper.R
 import com.example.bookshelfhelper.data.BookshelfDatabase
 import com.example.bookshelfhelper.data.model.Book
 import com.example.bookshelfhelper.data.repository.BookRepository
@@ -29,7 +29,6 @@ class BookListFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //return super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_book_list, container,false)
 
         binding.addOrEditButton.setOnClickListener{
@@ -44,20 +43,20 @@ class BookListFragment : Fragment(){
             }
         }
 
+        binding.comicbooksButton.setOnClickListener {
+            it.findNavController().navigate(R.id.action_bookListFragment_to_comicbookListFragment)
+        }
+
         initRecycleView()
 
         val dao = BookshelfDatabase.getInstance(requireContext()).bookDao
         val repository = BookRepository(dao)
         val factory = BookListViewModelFactory(repository)
         bookViewModel = ViewModelProvider(this, factory)[BookListViewModel::class.java]
-        binding.listViewModel = bookViewModel
+        binding.bookListViewModel = bookViewModel
         binding.lifecycleOwner = this
 
         displayBooksList()
-
-        bookViewModel.isDone.observe(viewLifecycleOwner, Observer {
-            binding.deleteButton.visibility = View.GONE
-        })
 
         return  binding.root
     }
@@ -81,17 +80,6 @@ class BookListFragment : Fragment(){
 
     private fun listItemClicked(book: Book){
         Toast.makeText(requireContext(), "selected item: ${book.title}",Toast.LENGTH_LONG).show()
-
-        if(binding.deleteButton.visibility == View.GONE){
-            binding.deleteButton.visibility = View.VISIBLE
-        }
-        else{
-            binding.deleteButton.visibility = View.GONE
-        }
-
         bookViewModel.initUpdate(book)
     }
-
-
-
 }

@@ -1,7 +1,6 @@
-package com.example.bookshelfhelper
+package com.example.bookshelfhelper.book
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -60,5 +59,4 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
             repository.update(book)
         }
     }
-
 }

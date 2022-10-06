@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/comicBookItemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+
+            android:id="@+id/itemImg"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:src="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/itemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/itemImg"
+            android:textSize="20sp"
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="2dp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@+id/itemImg"/>
+
+        <TextView
+            android:id="@+id/itemAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemTitle"
+            android:layout_toEndOf="@+id/itemImg"
+            android:padding="3dp" />
+
+        <TextView
+            android:id="@+id/itemPublisher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemAuthor"
+            android:layout_toEndOf="@+id/itemImg"
+            android:padding="3dp" />
+
+    </RelativeLayout>
+</layout>

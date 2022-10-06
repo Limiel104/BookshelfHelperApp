@@ -6,14 +6,14 @@
 
     <data>
         <variable
-            name="listViewModel"
-            type="com.example.bookshelfhelper.BookListViewModel" />
+            name="bookListViewModel"
+            type="com.example.bookshelfhelper.book.BookListViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="BookListFragment">
+    tools:context=".book.BookListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"
@@ -25,18 +25,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:text="@={listViewModel.addOrEditButtonText}"
+        android:text="@={bookListViewModel.addOrEditButtonText}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/deleteButton"
+        android:id="@+id/comicbooksButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:text="Delete"
-        android:visibility="gone"
-        android:onClick="@{()->listViewModel.onDelete()}"
+        android:text="Comicbooks"
         app:layout_constraintBottom_toTopOf="@id/addOrEditButton"
         app:layout_constraintEnd_toEndOf="parent" />
 
