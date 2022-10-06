@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookshelfhelper.R
+import com.example.bookshelfhelper.data.model.Book
 import com.example.bookshelfhelper.data.model.ComicBook
 import com.example.bookshelfhelper.databinding.ComicbookListItemBinding
 
@@ -34,6 +35,10 @@ class ComicBookListRecycleViewAdapter(private val selectedItem:(ComicBook)->Unit
     fun setList(comicBooks: List<ComicBook>){
         comicBooksList.clear()
         comicBooksList.addAll(comicBooks)
+    }
+
+    fun getComicBookAtPosition(position: Int): ComicBook {
+        return comicBooksList[position]
     }
 
     inner class ListViewHolder(val binding: ComicbookListItemBinding) : RecyclerView.ViewHolder(binding.root){

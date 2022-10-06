@@ -42,4 +42,10 @@ class BookListViewModel(private val repository: BookRepository) : ViewModel() {
         updateRequested = false
         bookToUpdate = Book(-1,"","","","","","")
     }
+
+    fun delete(book: Book){
+        viewModelScope.launch( Dispatchers.IO) {
+            repository.delete(book)
+        }
+    }
 }

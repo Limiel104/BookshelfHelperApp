@@ -3,8 +3,12 @@ package com.example.bookshelfhelper.comicbook
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.bookshelfhelper.data.model.Book
 import com.example.bookshelfhelper.data.model.ComicBook
 import com.example.bookshelfhelper.data.repository.ComicBookRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ComicBookListViewModel(private val repository: ComicBookRepository) : ViewModel() {
 
@@ -38,5 +42,11 @@ class ComicBookListViewModel(private val repository: ComicBookRepository) : View
         addOrEditButtonText.value = "Add"
         updateRequested = false
         comicBookToUpdate = ComicBook(-1,"","","","","","",-1,-1,false)
+    }
+
+    fun delete(comicBook: ComicBook){
+        viewModelScope.launch( Dispatchers.IO) {
+            repository.delete(comicBook)
+        }
     }
 }

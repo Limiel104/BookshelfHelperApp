@@ -11,8 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.bookshelfhelper.R
+import com.example.bookshelfhelper.SwipeToDelete
 import com.example.bookshelfhelper.data.BookshelfDatabase
 import com.example.bookshelfhelper.data.model.ComicBook
 import com.example.bookshelfhelper.data.repository.ComicBookRepository
@@ -59,6 +62,16 @@ class ComicBookListFragment : Fragment() {
         binding.lifecycleOwner = this
 
         displayComicBooksList()
+
+        val swipeToDelete = object: SwipeToDelete(){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                comicBookViewModel.delete(adapter.getComicBookAtPosition(position))
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeToDelete)
+        itemTouchHelper.attachToRecyclerView(binding.recycleViewCB)
 
         return  binding.root
     }

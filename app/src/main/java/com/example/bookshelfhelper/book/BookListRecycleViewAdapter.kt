@@ -1,8 +1,10 @@
 package com.example.bookshelfhelper.book
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookshelfhelper.R
@@ -34,6 +36,10 @@ class BookListRecycleViewAdapter(private val selectedItem:(Book)->Unit)
     fun setList(books: List<Book>){
         booksList.clear()
         booksList.addAll(books)
+    }
+
+    fun getBookAtPosition(position: Int): Book {
+        return booksList[position]
     }
 
     inner class ListViewHolder(val binding: BookListItemBinding) : RecyclerView.ViewHolder(binding.root){
