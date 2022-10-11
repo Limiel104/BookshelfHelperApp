@@ -28,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Title"
+                android:layout_marginTop="16dp"
                 android:text="@={addEditBookItemViewModel.inputTitle}"
                 android:inputType="text"
                 android:padding="15dp" />
@@ -37,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Author"
+                android:layout_marginTop="16dp"
                 android:text="@={addEditBookItemViewModel.inputAuthor}"
                 android:inputType="text"
                 android:padding="15dp" />
@@ -46,9 +48,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Publisher"
+                android:layout_marginTop="16dp"
                 android:text="@={addEditBookItemViewModel.inputPublisher}"
                 android:inputType="text"
                 android:padding="15dp" />
+            
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/selectFormat"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                <AutoCompleteTextView
+                    android:id="@+id/addFormat"
+                    android:text="@={addEditBookItemViewModel.inputFormat}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/selectType"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                <AutoCompleteTextView
+                    android:id="@+id/addType"
+                    android:text="@={addEditBookItemViewModel.inputType}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/selectLanguage"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                <AutoCompleteTextView
+                    android:id="@+id/addLanguage"
+                    android:text="@={addEditBookItemViewModel.inputLanguage}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 

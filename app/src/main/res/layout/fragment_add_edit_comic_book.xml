@@ -50,6 +50,66 @@
                 android:inputType="text"
                 android:padding="15dp" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/selectFormat"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                <AutoCompleteTextView
+                    android:id="@+id/addFormat"
+                    android:text="@={addEditComicBookItemViewModel.inputFormat}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/selectType"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                <AutoCompleteTextView
+                    android:id="@+id/addType"
+                    android:text="@={addEditComicBookItemViewModel.inputType}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/selectLanguage"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                <AutoCompleteTextView
+                    android:id="@+id/addLanguage"
+                    android:text="@={addEditComicBookItemViewModel.inputLanguage}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <EditText
+                android:id="@+id/addVolumesReleased"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Volumes Released"
+                android:text="@={addEditComicBookItemViewModel.inputVolumesReleased}"
+                android:inputType="number"
+                android:padding="15dp" />
+
+            <EditText
+                android:id="@+id/addVolumesOwned"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Volumes Owned"
+                android:text="@={addEditComicBookItemViewModel.inputVolumesOwned}"
+                android:inputType="number"
+                android:padding="15dp" />
+
         </LinearLayout>
 
         <Button

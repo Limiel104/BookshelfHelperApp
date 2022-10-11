@@ -48,6 +48,9 @@ class BookListRecycleViewAdapter(private val selectedItem:(Book)->Unit)
             binding.itemTitle.text = book.title
             binding.itemAuthor.text = book.author
             binding.itemPublisher.text = book.publisher
+            binding.itemFormat.text = book.format
+            binding.itemType.text = book.type
+            binding.itemLanguage.text = book.language
 
             if(checkedPosition == -1) {
                 binding.bookItemLayout.setBackgroundColor(Color.WHITE)

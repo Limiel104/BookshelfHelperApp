@@ -10,8 +10,8 @@
         <ImageView
 
             android:id="@+id/itemImg"
-            android:layout_width="80dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="160dp"
             android:layout_alignParentTop="true"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
@@ -43,6 +43,46 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/itemAuthor"
+            android:layout_toEndOf="@+id/itemImg"
+            android:padding="3dp" />
+
+        <TextView
+            android:id="@+id/itemFormat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemPublisher"
+            android:layout_toEndOf="@+id/itemImg"
+            android:padding="3dp" />
+
+        <TextView
+            android:id="@+id/itemType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemFormat"
+            android:layout_toEndOf="@+id/itemImg"
+            android:padding="3dp" />
+
+        <TextView
+            android:id="@+id/itemLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemType"
+            android:layout_toEndOf="@+id/itemImg"
+            android:padding="3dp" />
+
+        <TextView
+            android:id="@+id/itemVolumesReleased"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemLanguage"
+            android:layout_toEndOf="@+id/itemImg"
+            android:padding="3dp" />
+
+        <TextView
+            android:id="@+id/itemVolumesOwned"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemVolumesReleased"
             android:layout_toEndOf="@+id/itemImg"
             android:padding="3dp" />
 

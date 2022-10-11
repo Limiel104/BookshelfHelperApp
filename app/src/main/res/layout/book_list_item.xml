@@ -1,50 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
         android:id="@+id/bookItemLayout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ImageView
+        <ImageView
 
-        android:id="@+id/itemImg"
-        android:layout_width="80dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:src="@android:color/darker_gray" />
+            android:id="@+id/itemImg"
+            android:layout_width="110dp"
+            android:layout_height="160dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:src="@android:color/darker_gray" />
 
-    <TextView
-        android:id="@+id/itemTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/itemImg"
-        android:textSize="20sp"
-        android:paddingVertical="5dp"
-        android:paddingHorizontal="2dp"
-        android:textStyle="bold"
-        android:layout_toEndOf="@+id/itemImg"/>
+        <TextView
+            android:id="@+id/itemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/itemImg"
+            android:layout_toEndOf="@+id/itemImg"
+            android:paddingHorizontal="2dp"
+            android:paddingVertical="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/itemAuthor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/itemTitle"
-        android:layout_toEndOf="@+id/itemImg"
-        android:padding="3dp" />
+        <TextView
+            android:id="@+id/itemAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemTitle"
+            android:layout_toEndOf="@+id/itemImg"
+            android:padding="3dp" />
 
-    <TextView
-        android:id="@+id/itemPublisher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/itemAuthor"
-        android:layout_toEndOf="@+id/itemImg"
-        android:padding="3dp" />
+        <TextView
+            android:id="@+id/itemPublisher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemAuthor"
+            android:layout_toEndOf="@+id/itemImg"
+            android:padding="3dp" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/itemFormat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemPublisher"
+            android:layout_toEndOf="@+id/itemImg"
+            android:padding="3dp" />
+
+        <TextView
+            android:id="@+id/itemType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemFormat"
+            android:layout_toEndOf="@+id/itemImg"
+            android:padding="3dp" />
+
+        <TextView
+            android:id="@+id/itemLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemType"
+            android:layout_toEndOf="@+id/itemImg"
+            android:padding="3dp" />
+
+    </RelativeLayout>
 </layout>

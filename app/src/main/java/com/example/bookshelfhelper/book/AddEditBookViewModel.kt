@@ -14,6 +14,9 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
     val inputTitle = MutableLiveData<String>()
     val inputAuthor = MutableLiveData<String>()
     val inputPublisher = MutableLiveData<String>()
+    val inputFormat = MutableLiveData<String>()
+    val inputType = MutableLiveData<String>()
+    val inputLanguage = MutableLiveData<String>()
     val addOrEditButtonText = MutableLiveData<String>()
     var isDone = MutableLiveData<Boolean>()
 
@@ -30,12 +33,15 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
         val title = inputTitle.value!!
         val author = inputAuthor.value!!
         val publisher = inputPublisher.value!!
+        val format = inputFormat.value!!
+        val type = inputType.value!!
+        val language = inputLanguage.value!!
 
         if(updateMode){
-            update(Book(bookToUpdate.id,title,author,publisher,"A5","twarda okladka","Polski"))
+            update(Book(bookToUpdate.id,title,author,publisher,format,type,language))
         }
         else{
-            insert(Book(0,title,author,publisher,"A5","twarda okladka","Polski"))
+            insert(Book(0,title,author,publisher,format,type,language))
         }
 
         isDone.value = true
@@ -45,6 +51,9 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
         inputTitle.value = bookToUpdate.title
         inputAuthor.value = bookToUpdate.author
         inputPublisher.value = bookToUpdate.publisher
+        inputFormat.value = bookToUpdate.format
+        inputType.value = bookToUpdate.type
+        inputLanguage.value = bookToUpdate.language
         addOrEditButtonText.value = "Update"
     }
 
