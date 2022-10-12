@@ -52,6 +52,7 @@ class ComicBookListRecycleViewAdapter(private val selectedItem:(ComicBook)->Unit
             binding.itemLanguage.text = comicBook.language
             binding.itemVolumesReleased.text = comicBook.volumesReleased.toString()
             binding.itemVolumesOwned.text = comicBook.volumesOwned.toString()
+            binding.itemIsBlackAndWhite.text = comicBook.pagesColor
 
             if(checkedPosition == -1) {
                 binding.comicBookItemLayout.setBackgroundColor(Color.WHITE)

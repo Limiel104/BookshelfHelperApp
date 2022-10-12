@@ -59,16 +59,19 @@ class AddEditComicBookFragment : Fragment() {
         val formats = resources.getStringArray(R.array.formats)
         val types = resources.getStringArray(R.array.types)
         val languages = resources.getStringArray(R.array.languages)
+        val pagesColor = resources.getStringArray(R.array.pagesColor)
 
         val  formatsArrayAdapter =
             context?.let { ArrayAdapter(it,R.layout.drop_down_list_item,formats) }
         val  typesArrayAdapter = context?.let { ArrayAdapter(it,R.layout.drop_down_list_item,types) }
         val  languagesArrayAdapter =
             context?.let { ArrayAdapter(it,R.layout.drop_down_list_item,languages) }
+        val  pagesColorArrayAdapter =
+            context?.let { ArrayAdapter(it,R.layout.drop_down_list_item,pagesColor) }
 
         binding.addFormat.setAdapter(formatsArrayAdapter)
         binding.addType.setAdapter(typesArrayAdapter)
         binding.addLanguage.setAdapter(languagesArrayAdapter)
-
+        binding.addPagesColor.setAdapter(pagesColorArrayAdapter)
     }
 }

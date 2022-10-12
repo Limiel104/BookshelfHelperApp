@@ -19,6 +19,6 @@ class ComicBook(
     val language: String,
     val volumesReleased: Int,
     val volumesOwned: Int,
-    val isBlackAndWhite: Boolean
+    val pagesColor: String
 
 ) : Parcelable {}

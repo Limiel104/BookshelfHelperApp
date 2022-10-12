@@ -19,6 +19,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
     val inputLanguage = MutableLiveData<String>()
     val inputVolumesReleased = MutableLiveData<String>()
     val inputVolumesOwned = MutableLiveData<String>()
+    val inputPagesColor = MutableLiveData<String>()
     val addOrEditButtonText = MutableLiveData<String>()
     var isDone = MutableLiveData<Boolean>()
 
@@ -40,12 +41,13 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
         val language = inputLanguage.value!!
         val volumesReleased = inputVolumesReleased.value!!.toInt()
         val volumesOwned = inputVolumesOwned.value!!.toInt()
+        val pagesColor = inputPagesColor.value!!
 
         if(updateMode){
-            update(ComicBook(comicBookToUpdate.id,title,author,publisher,format,type,language,volumesReleased,volumesOwned,false))
+            update(ComicBook(comicBookToUpdate.id,title,author,publisher,format,type,language,volumesReleased,volumesOwned,pagesColor))
         }
         else{
-            insert(ComicBook(0,title,author,publisher,format,type,language,volumesReleased,volumesOwned,false))
+            insert(ComicBook(0,title,author,publisher,format,type,language,volumesReleased,volumesOwned,pagesColor))
         }
 
         isDone.value = true
@@ -60,6 +62,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
         inputLanguage.value = comicBookToUpdate.language
         inputVolumesReleased.value = comicBookToUpdate.volumesReleased.toString()
         inputVolumesOwned.value = comicBookToUpdate.volumesOwned.toString()
+        inputPagesColor.value = comicBookToUpdate.pagesColor
         addOrEditButtonText.value = "Update"
     }
 

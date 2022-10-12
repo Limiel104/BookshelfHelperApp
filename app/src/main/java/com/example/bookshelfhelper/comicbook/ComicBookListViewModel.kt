@@ -41,7 +41,7 @@ class ComicBookListViewModel(private val repository: ComicBookRepository) : View
     fun returnToInitLayout(){
         addOrEditButtonText.value = "Add"
         updateRequested = false
-        comicBookToUpdate = ComicBook(-1,"","","","","","",-1,-1,false)
+        comicBookToUpdate = ComicBook(-1,"","","","","","",-1,-1,"")
     }
 
     fun delete(comicBook: ComicBook){
