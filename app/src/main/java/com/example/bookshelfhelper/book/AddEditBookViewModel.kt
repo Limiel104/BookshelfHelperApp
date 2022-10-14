@@ -30,6 +30,49 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
 
     fun saveOrUpdate(){
 
+        if(updateMode){
+
+            val format : String = if(inputFormat.value == null){
+                Log.i("TAG","format is null")
+                bookToUpdate.format
+            } else {
+                inputFormat.value!!
+            }
+
+            val type : String = if(inputType.value == null){
+                Log.i("TAG","type is null")
+                bookToUpdate.type
+            } else {
+                inputType.value!!
+            }
+
+            val language : String = if(inputLanguage.value == null){
+                Log.i("TAG","language is null")
+                bookToUpdate.language
+            } else {
+                inputLanguage.value!!
+            }
+
+            performUpdate(format,type,language)
+        }
+        else{
+            performSave()
+        }
+    }
+
+    private fun performUpdate(format: String, type: String, language: String){
+
+        val title = inputTitle.value!!
+        val author = inputAuthor.value!!
+        val publisher = inputPublisher.value!!
+
+        update(Book(bookToUpdate.id,title,author,publisher,format,type,language))
+
+        isDone.value = true
+    }
+
+    private fun performSave(){
+
         val title = inputTitle.value!!
         val author = inputAuthor.value!!
         val publisher = inputPublisher.value!!
@@ -37,12 +80,7 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
         val type = inputType.value!!
         val language = inputLanguage.value!!
 
-        if(updateMode){
-            update(Book(bookToUpdate.id,title,author,publisher,format,type,language))
-        }
-        else{
-            insert(Book(0,title,author,publisher,format,type,language))
-        }
+        insert(Book(0,title,author,publisher,format,type,language))
 
         isDone.value = true
     }
@@ -51,9 +89,6 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
         inputTitle.value = bookToUpdate.title
         inputAuthor.value = bookToUpdate.author
         inputPublisher.value = bookToUpdate.publisher
-        inputFormat.value = bookToUpdate.format
-        inputType.value = bookToUpdate.type
-        inputLanguage.value = bookToUpdate.language
         addOrEditButtonText.value = "Update"
     }
 
