@@ -40,7 +40,7 @@ class BookListViewModel(private val repository: BookRepository) : ViewModel() {
     fun returnToInitLayout(){
         addOrEditButtonText.value = "Add"
         updateRequested = false
-        bookToUpdate = Book(-1,"","","","","","")
+        bookToUpdate = Book(-1,"","","","","","","")
     }
 
     fun delete(book: Book){

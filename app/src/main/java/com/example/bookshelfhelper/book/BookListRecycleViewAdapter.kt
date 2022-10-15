@@ -1,12 +1,11 @@
 package com.example.bookshelfhelper.book
 
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.bookshelfhelper.R
 import com.example.bookshelfhelper.data.model.Book
 import com.example.bookshelfhelper.databinding.BookListItemBinding
@@ -51,6 +50,10 @@ class BookListRecycleViewAdapter(private val selectedItem:(Book)->Unit)
             binding.itemFormat.text = book.format
             binding.itemType.text = book.type
             binding.itemLanguage.text = book.language
+
+            Glide.with(binding.itemImg.context)
+                .load(book.imagePath)
+                .into(binding.itemImg)
 
             if(checkedPosition == -1) {
                 binding.bookItemLayout.setBackgroundColor(Color.WHITE)

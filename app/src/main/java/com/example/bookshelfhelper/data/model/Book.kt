@@ -16,6 +16,7 @@ open class Book (
     val publisher: String,
     val format: String,
     val type: String,
-    val language: String
+    val language: String,
+    val imagePath: String
 
 ) : Parcelable {}

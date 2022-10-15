@@ -17,7 +17,9 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
     val inputFormat = MutableLiveData<String>()
     val inputType = MutableLiveData<String>()
     val inputLanguage = MutableLiveData<String>()
+    val addOrEditImageButtonText = MutableLiveData<String>()
     val addOrEditButtonText = MutableLiveData<String>()
+    lateinit var inputImagePath : String
     var isDone = MutableLiveData<Boolean>()
 
     lateinit var bookToUpdate: Book
@@ -25,6 +27,7 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
 
     init {
         Log.i("TAG","AddEditBookViewModel")
+        addOrEditImageButtonText.value = "Add Book Cover"
         addOrEditButtonText.value = "Add"
     }
 
@@ -65,8 +68,9 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
         val title = inputTitle.value!!
         val author = inputAuthor.value!!
         val publisher = inputPublisher.value!!
+        val imagePath = inputImagePath
 
-        update(Book(bookToUpdate.id,title,author,publisher,format,type,language))
+        update(Book(bookToUpdate.id,title,author,publisher,format,type,language,imagePath))
 
         isDone.value = true
     }
@@ -79,8 +83,9 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
         val format = inputFormat.value!!
         val type = inputType.value!!
         val language = inputLanguage.value!!
+        val imagePath = inputImagePath
 
-        insert(Book(0,title,author,publisher,format,type,language))
+        insert(Book(0,title,author,publisher,format,type,language,imagePath))
 
         isDone.value = true
     }
@@ -89,6 +94,7 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
         inputTitle.value = bookToUpdate.title
         inputAuthor.value = bookToUpdate.author
         inputPublisher.value = bookToUpdate.publisher
+        addOrEditImageButtonText.value = "Change Book Cover"
         addOrEditButtonText.value = "Update"
     }
 
