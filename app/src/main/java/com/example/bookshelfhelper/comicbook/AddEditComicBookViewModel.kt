@@ -33,6 +33,58 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
 
     fun saveOrUpdate(){
 
+        if(updateMode){
+
+            val format : String = if(inputFormat.value == null){
+                Log.i("TAG","format is null")
+                comicBookToUpdate.format
+            } else {
+                inputFormat.value!!
+            }
+
+            val type : String = if(inputType.value == null){
+                Log.i("TAG","type is null")
+                comicBookToUpdate.type
+            } else {
+                inputType.value!!
+            }
+
+            val language : String = if(inputLanguage.value == null){
+                Log.i("TAG","language is null")
+                comicBookToUpdate.language
+            } else {
+                inputLanguage.value!!
+            }
+
+            val pagesColor : String = if(inputPagesColor.value == null){
+                Log.i("TAG","pagesColor is null")
+                comicBookToUpdate.pagesColor
+            } else {
+                inputPagesColor.value!!
+            }
+
+            performUpdate(format,type,language,pagesColor)
+        }
+        else{
+            performSave()
+        }
+    }
+
+    private fun performUpdate(format: String, type: String, language: String, pagesColor: String){
+
+        val title = inputTitle.value!!
+        val author = inputAuthor.value!!
+        val publisher = inputPublisher.value!!
+        val volumesReleased = inputVolumesReleased.value!!.toInt()
+        val volumesOwned = inputVolumesOwned.value!!.toInt()
+
+        update(ComicBook(comicBookToUpdate.id,title,author,publisher,format,type,language,volumesReleased,volumesOwned,pagesColor))
+
+        isDone.value = true
+    }
+
+    private fun performSave() {
+
         val title = inputTitle.value!!
         val author = inputAuthor.value!!
         val publisher = inputPublisher.value!!
@@ -43,12 +95,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
         val volumesOwned = inputVolumesOwned.value!!.toInt()
         val pagesColor = inputPagesColor.value!!
 
-        if(updateMode){
-            update(ComicBook(comicBookToUpdate.id,title,author,publisher,format,type,language,volumesReleased,volumesOwned,pagesColor))
-        }
-        else{
-            insert(ComicBook(0,title,author,publisher,format,type,language,volumesReleased,volumesOwned,pagesColor))
-        }
+        insert(ComicBook(0,title,author,publisher,format,type,language,volumesReleased,volumesOwned,pagesColor))
 
         isDone.value = true
     }
@@ -57,12 +104,8 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
         inputTitle.value = comicBookToUpdate.title
         inputAuthor.value = comicBookToUpdate.author
         inputPublisher.value = comicBookToUpdate.publisher
-        inputFormat.value = comicBookToUpdate.format
-        inputType.value = comicBookToUpdate.type
-        inputLanguage.value = comicBookToUpdate.language
         inputVolumesReleased.value = comicBookToUpdate.volumesReleased.toString()
         inputVolumesOwned.value = comicBookToUpdate.volumesOwned.toString()
-        inputPagesColor.value = comicBookToUpdate.pagesColor
         addOrEditButtonText.value = "Update"
     }
 
