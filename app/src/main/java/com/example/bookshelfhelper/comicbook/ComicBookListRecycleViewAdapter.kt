@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.bookshelfhelper.R
-import com.example.bookshelfhelper.data.model.Book
 import com.example.bookshelfhelper.data.model.ComicBook
 import com.example.bookshelfhelper.databinding.ComicbookListItemBinding
 
@@ -53,6 +53,10 @@ class ComicBookListRecycleViewAdapter(private val selectedItem:(ComicBook)->Unit
             binding.itemVolumesReleased.text = comicBook.volumesReleased.toString()
             binding.itemVolumesOwned.text = comicBook.volumesOwned.toString()
             binding.itemIsBlackAndWhite.text = comicBook.pagesColor
+
+            Glide.with(binding.itemImg.context)
+                .load(comicBook.imagePath)
+                .into(binding.itemImg)
 
             if(checkedPosition == -1) {
                 binding.comicBookItemLayout.setBackgroundColor(Color.WHITE)

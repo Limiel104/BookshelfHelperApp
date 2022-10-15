@@ -20,7 +20,9 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
     val inputVolumesReleased = MutableLiveData<String>()
     val inputVolumesOwned = MutableLiveData<String>()
     val inputPagesColor = MutableLiveData<String>()
+    val addOrEditImageButtonText = MutableLiveData<String>()
     val addOrEditButtonText = MutableLiveData<String>()
+    lateinit var inputImagePath : String
     var isDone = MutableLiveData<Boolean>()
 
     lateinit var comicBookToUpdate: ComicBook
@@ -28,6 +30,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
 
     init {
         Log.i("TAG","AddEditComicBookViewModel")
+        addOrEditImageButtonText.value = "Add Comic book Cover"
         addOrEditButtonText.value = "Add"
     }
 
@@ -77,8 +80,9 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
         val publisher = inputPublisher.value!!
         val volumesReleased = inputVolumesReleased.value!!.toInt()
         val volumesOwned = inputVolumesOwned.value!!.toInt()
+        val imagePath = inputImagePath
 
-        update(ComicBook(comicBookToUpdate.id,title,author,publisher,format,type,language,volumesReleased,volumesOwned,pagesColor))
+        update(ComicBook(comicBookToUpdate.id,title,author,publisher,format,type,language,volumesReleased,volumesOwned,pagesColor,imagePath))
 
         isDone.value = true
     }
@@ -94,8 +98,9 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
         val volumesReleased = inputVolumesReleased.value!!.toInt()
         val volumesOwned = inputVolumesOwned.value!!.toInt()
         val pagesColor = inputPagesColor.value!!
+        val imagePath = inputImagePath
 
-        insert(ComicBook(0,title,author,publisher,format,type,language,volumesReleased,volumesOwned,pagesColor))
+        insert(ComicBook(0,title,author,publisher,format,type,language,volumesReleased,volumesOwned,pagesColor,imagePath))
 
         isDone.value = true
     }
@@ -106,6 +111,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
         inputPublisher.value = comicBookToUpdate.publisher
         inputVolumesReleased.value = comicBookToUpdate.volumesReleased.toString()
         inputVolumesOwned.value = comicBookToUpdate.volumesOwned.toString()
+        addOrEditImageButtonText.value = "Change Comic book Cover"
         addOrEditButtonText.value = "Update"
     }
 

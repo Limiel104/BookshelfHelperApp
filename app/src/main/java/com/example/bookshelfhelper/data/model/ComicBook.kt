@@ -19,6 +19,7 @@ class ComicBook(
     val language: String,
     val volumesReleased: Int,
     val volumesOwned: Int,
-    val pagesColor: String
+    val pagesColor: String,
+    val imagePath: String
 
 ) : Parcelable {}

@@ -101,7 +101,7 @@ class AddEditBookFragment : Fragment(){
         }
 
         addEditBookItemViewModel.inputImagePath = tmpFile.path
-            Log.i("TAG",tmpFile.path)
+        Log.i("TAG",tmpFile.path)
 
         return context?.let { FileProvider.getUriForFile(it, "${BuildConfig.APPLICATION_ID}.provider", tmpFile) }!!
     }
