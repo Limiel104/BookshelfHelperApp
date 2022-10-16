@@ -47,23 +47,23 @@ class BookListRecycleViewAdapter(private val selectedItem:(Book)->Unit)
             binding.itemTitle.text = book.title
             binding.itemAuthor.text = book.author
             binding.itemPublisher.text = book.publisher
-            binding.itemFormat.text = book.format
-            binding.itemType.text = book.type
-            binding.itemLanguage.text = book.language
+
+            val text = book.format + " | " + book.type + " | " + book.language
+            binding.itemFTL.text = text
 
             Glide.with(binding.itemImg.context)
                 .load(book.imagePath)
                 .into(binding.itemImg)
 
             if(checkedPosition == -1) {
-                binding.bookItemLayout.setBackgroundColor(Color.WHITE)
+                binding.bookItemLayout.setCardBackgroundColor(Color.WHITE)
             }
             else {
                 if(checkedPosition == adapterPosition) {
-                    binding.bookItemLayout.setBackgroundColor(Color.BLUE)
+                    binding.bookItemLayout.setCardBackgroundColor(Color.GRAY)
                 }
                 else {
-                    binding.bookItemLayout.setBackgroundColor(Color.WHITE)
+                    binding.bookItemLayout.setCardBackgroundColor(Color.WHITE)
                 }
             }
 
@@ -71,13 +71,13 @@ class BookListRecycleViewAdapter(private val selectedItem:(Book)->Unit)
 
                 if(isItemSelected){
                     if(checkedPosition == adapterPosition){
-                        binding.bookItemLayout.setBackgroundColor(Color.WHITE)
+                        binding.bookItemLayout.setCardBackgroundColor(Color.WHITE)
                         isItemSelected = false
                         selectedItem(book)
                     }
                 }
                 else{
-                    binding.bookItemLayout.setBackgroundColor(Color.BLUE)
+                    binding.bookItemLayout.setCardBackgroundColor(Color.GRAY)
 
                     if(checkedPosition != adapterPosition){
                         notifyItemChanged(checkedPosition)

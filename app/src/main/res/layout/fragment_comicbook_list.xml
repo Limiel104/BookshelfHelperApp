@@ -21,19 +21,27 @@
         android:layout_height="match_parent" />
 
     <Button
+        style="@style/Widget.Material3.Button.ElevatedButton"
         android:id="@+id/addOrEditButtonCB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/yellow"
         android:text="@={comicBookListViewModel.addOrEditButtonText}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
+        style="@style/Widget.Material3.Button.ElevatedButton"
         android:id="@+id/booksButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/yellow"
         android:text="Books"
         app:layout_constraintBottom_toTopOf="@id/addOrEditButtonCB"
         app:layout_constraintEnd_toEndOf="parent" />

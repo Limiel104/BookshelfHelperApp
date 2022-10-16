@@ -47,26 +47,26 @@ class ComicBookListRecycleViewAdapter(private val selectedItem:(ComicBook)->Unit
             binding.itemTitle.text = comicBook.title
             binding.itemAuthor.text = comicBook.author
             binding.itemPublisher.text = comicBook.publisher
-            binding.itemFormat.text = comicBook.format
-            binding.itemType.text = comicBook.type
-            binding.itemLanguage.text = comicBook.language
-            binding.itemVolumesReleased.text = comicBook.volumesReleased.toString()
-            binding.itemVolumesOwned.text = comicBook.volumesOwned.toString()
-            binding.itemIsBlackAndWhite.text = comicBook.pagesColor
+
+            val text = comicBook.format + " | " + comicBook.type + " | " + comicBook.language
+            binding.itemFTL.text = text
+
+            val text2 = comicBook.pagesColor + " | " + comicBook.volumesOwned + "/" + comicBook.volumesReleased
+            binding.itemPCVOVR.text = text2
 
             Glide.with(binding.itemImg.context)
                 .load(comicBook.imagePath)
                 .into(binding.itemImg)
 
             if(checkedPosition == -1) {
-                binding.comicBookItemLayout.setBackgroundColor(Color.WHITE)
+                binding.comicBookItemLayout.setCardBackgroundColor(Color.WHITE)
             }
             else {
                 if(checkedPosition == adapterPosition) {
-                    binding.comicBookItemLayout.setBackgroundColor(Color.BLUE)
+                    binding.comicBookItemLayout.setCardBackgroundColor(Color.GRAY)
                 }
                 else {
-                    binding.comicBookItemLayout.setBackgroundColor(Color.WHITE)
+                    binding.comicBookItemLayout.setCardBackgroundColor(Color.WHITE)
                 }
             }
 
@@ -74,13 +74,13 @@ class ComicBookListRecycleViewAdapter(private val selectedItem:(ComicBook)->Unit
 
                 if(isItemSelected){
                     if(checkedPosition == adapterPosition){
-                        binding.comicBookItemLayout.setBackgroundColor(Color.WHITE)
+                        binding.comicBookItemLayout.setCardBackgroundColor(Color.WHITE)
                         isItemSelected = false
                         selectedItem(comicBook)
                     }
                 }
                 else{
-                    binding.comicBookItemLayout.setBackgroundColor(Color.BLUE)
+                    binding.comicBookItemLayout.setCardBackgroundColor(Color.GRAY)
 
                     if(checkedPosition != adapterPosition){
                         notifyItemChanged(checkedPosition)
