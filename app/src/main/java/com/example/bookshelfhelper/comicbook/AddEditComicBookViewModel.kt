@@ -1,9 +1,11 @@
 package com.example.bookshelfhelper.comicbook
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.bookshelfhelper.Event
 import com.example.bookshelfhelper.data.model.ComicBook
 import com.example.bookshelfhelper.data.repository.ComicBookRepository
 import kotlinx.coroutines.Dispatchers
@@ -22,8 +24,13 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
     val inputPagesColor = MutableLiveData<String>()
     val addOrEditImageButtonText = MutableLiveData<String>()
     val addOrEditButtonText = MutableLiveData<String>()
-    lateinit var inputImagePath : String
+    var inputImagePath = ""
     var isDone = MutableLiveData<Boolean>()
+
+    private val statusMessage = MutableLiveData<Event<String>>()
+
+    val message : LiveData<Event<String>>
+        get() = statusMessage
 
     lateinit var comicBookToUpdate: ComicBook
     var updateMode = false
@@ -37,50 +44,80 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
     fun saveOrUpdate(){
 
         if(updateMode){
-
-            val format : String = if(inputFormat.value == null){
-                Log.i("TAG","format is null")
-                comicBookToUpdate.format
-            } else {
-                inputFormat.value!!
-            }
-
-            val type : String = if(inputType.value == null){
-                Log.i("TAG","type is null")
-                comicBookToUpdate.type
-            } else {
-                inputType.value!!
-            }
-
-            val language : String = if(inputLanguage.value == null){
-                Log.i("TAG","language is null")
-                comicBookToUpdate.language
-            } else {
-                inputLanguage.value!!
-            }
-
-            val pagesColor : String = if(inputPagesColor.value == null){
-                Log.i("TAG","pagesColor is null")
-                comicBookToUpdate.pagesColor
-            } else {
-                inputPagesColor.value!!
-            }
-
-            performUpdate(format,type,language,pagesColor)
+            validateUpdate()
         }
         else{
-            performSave()
+            validateSave()
         }
     }
 
-    private fun performUpdate(format: String, type: String, language: String, pagesColor: String){
+    private fun validateUpdate(){
+
+        when{
+            inputTitle.value == null -> statusMessage.value = Event("Please enter book's title")
+            inputAuthor.value == null -> statusMessage.value = Event("Please enter book's author")
+            inputPublisher.value == null -> statusMessage.value = Event("Please enter book's publisher")
+            inputVolumesReleased.value == null -> statusMessage.value = Event("Please enter number of released volumes of comic book")
+            inputVolumesOwned.value == null -> statusMessage.value = Event("Please enter number of owned volumes of comic book")
+        }
+
+        val format : String = if(inputFormat.value == null){
+            comicBookToUpdate.format
+        } else {
+            inputFormat.value!!
+        }
+
+        val type : String = if(inputType.value == null){
+            comicBookToUpdate.type
+        } else {
+            inputType.value!!
+        }
+
+        val language : String = if(inputLanguage.value == null){
+            comicBookToUpdate.language
+        } else {
+            inputLanguage.value!!
+        }
+
+        val pagesColor : String = if(inputPagesColor.value == null){
+            comicBookToUpdate.pagesColor
+        } else {
+            inputPagesColor.value!!
+        }
+
+        val imagePath : String = if(inputImagePath == ""){
+            comicBookToUpdate.imagePath
+        }else{
+            inputImagePath
+        }
+
+        performUpdate(format,type,language,pagesColor,imagePath)
+    }
+
+    private fun validateSave(){
+
+        when{
+            inputTitle.value == null -> statusMessage.value = Event("Please enter book's title")
+            inputAuthor.value == null -> statusMessage.value = Event("Please enter book's author")
+            inputPublisher.value == null -> statusMessage.value = Event("Please enter book's publisher")
+            inputFormat.value == null -> statusMessage.value = Event("Please choose book's format")
+            inputType.value == null -> statusMessage.value = Event("Please choose book's type")
+            inputLanguage.value == null ->  statusMessage.value = Event("Please choose book's language")
+            inputVolumesReleased.value == null -> statusMessage.value = Event("Please enter number of released volumes of comic book")
+            inputVolumesOwned.value == null -> statusMessage.value = Event("Please enter number of owned volumes of comic book")
+            inputPagesColor.value == null -> statusMessage.value = Event("Please choose comic book's pages color")
+            inputImagePath == "" ->  statusMessage.value = Event("Please add book's cover photo")
+            else -> performSave()
+        }
+    }
+
+    private fun performUpdate(format: String, type: String, language: String, pagesColor: String, imagePath: String){
 
         val title = inputTitle.value!!
         val author = inputAuthor.value!!
         val publisher = inputPublisher.value!!
         val volumesReleased = inputVolumesReleased.value!!.toInt()
         val volumesOwned = inputVolumesOwned.value!!.toInt()
-        val imagePath = inputImagePath
 
         update(ComicBook(comicBookToUpdate.id,title,author,publisher,format,type,language,volumesReleased,volumesOwned,pagesColor,imagePath))
 
@@ -115,13 +152,13 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
         addOrEditButtonText.value = "Update"
     }
 
-    fun insert(comicBook: ComicBook){
+    private fun insert(comicBook: ComicBook){
         viewModelScope.launch( Dispatchers.IO) {
             repository.insert(comicBook)
         }
     }
 
-    fun update(comicBook: ComicBook){
+    private fun update(comicBook: ComicBook){
         viewModelScope.launch( Dispatchers.IO) {
             repository.update(comicBook)
         }

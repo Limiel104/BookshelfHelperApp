@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
@@ -49,15 +50,13 @@ class AddEditBookFragment : Fragment(){
         prepareOnClickListeners()
 
         if(passedData.bookToUpdate != null){
-            passedData.bookToUpdate?.let { Log.i("TAG", it.title.toString()) }
+            passedData.bookToUpdate?.let { Log.i("TAG", it.title) }
             addEditBookItemViewModel.bookToUpdate = passedData.bookToUpdate!!
             addEditBookItemViewModel.prepareUpdateLayout()
             addEditBookItemViewModel.updateMode = true
         }
 
-        addEditBookItemViewModel.isDone.observe(viewLifecycleOwner, Observer {
-            findNavController().popBackStack()
-        })
+        prepareObservers()
 
         return  binding.root
     }
@@ -79,11 +78,24 @@ class AddEditBookFragment : Fragment(){
         binding.addLanguage.setAdapter(languagesArrayAdapter)
     }
 
-    fun prepareOnClickListeners(){
+    private fun prepareOnClickListeners(){
 
         binding.addImage.setOnClickListener {
             takeImage()
         }
+    }
+
+    private fun prepareObservers(){
+
+        addEditBookItemViewModel.isDone.observe(viewLifecycleOwner, Observer {
+            findNavController().popBackStack()
+        })
+
+        addEditBookItemViewModel.message.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let {
+                Toast.makeText(context,it,Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     private fun takeImage(){

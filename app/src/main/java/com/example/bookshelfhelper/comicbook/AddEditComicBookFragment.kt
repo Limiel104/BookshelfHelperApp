@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
@@ -55,9 +56,7 @@ class AddEditComicBookFragment : Fragment() {
             addEditComicBookItemViewModel.updateMode = true
         }
 
-        addEditComicBookItemViewModel.isDone.observe(viewLifecycleOwner, Observer {
-            findNavController().popBackStack()
-        })
+        prepareObservers()
 
         return  binding.root
     }
@@ -88,6 +87,19 @@ class AddEditComicBookFragment : Fragment() {
         binding.addImage.setOnClickListener {
             takeImage()
         }
+    }
+
+    private fun prepareObservers(){
+
+        addEditComicBookItemViewModel.isDone.observe(viewLifecycleOwner, Observer {
+            findNavController().popBackStack()
+        })
+
+        addEditComicBookItemViewModel.message.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let {
+                Toast.makeText(context,it, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     private fun takeImage(){
