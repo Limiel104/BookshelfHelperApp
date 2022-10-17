@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">BookshelfHelper</string>
+    <string name="selectTitle">Title</string>
+    <string name="selectAuthor">Author</string>
+    <string name="selectPublisher">Publisher</string>
     <string name="selectFormat"> Select Format</string>
     <string name="selectType"> Select Type</string>
     <string name="selectLanguage"> Select Language</string>
+    <string name="selectVolumesReleased">Volumes Released</string>
+    <string name="selectVolumesOwned">Volumes Owned</string>
     <string name="selectPagesColor"> Select Pages Color</string>
 
     <string-array name="formats">

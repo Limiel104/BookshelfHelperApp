@@ -27,38 +27,67 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/addTitle"
+                    style="?attr/textInputOutlinedStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:inputType="text"
-                    android:padding="15dp"
-                    android:text="@={addEditComicBookItemViewModel.inputTitle}" />
+                    android:hint="@string/selectTitle"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="50"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true">
 
-                <EditText
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:text="@={addEditComicBookItemViewModel.inputTitle}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/addAuthor"
+                    style="?attr/textInputOutlinedStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Author"
-                    android:inputType="text"
-                    android:padding="15dp"
-                    android:text="@={addEditComicBookItemViewModel.inputAuthor}" />
+                    android:hint="@string/selectAuthor"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="40"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true">
 
-                <EditText
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:maxLength="40"
+                        android:text="@={addEditComicBookItemViewModel.inputAuthor}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/addPublisher"
+                    style="?attr/textInputOutlinedStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publisher"
-                    android:inputType="text"
-                    android:padding="15dp"
-                    android:text="@={addEditComicBookItemViewModel.inputPublisher}" />
+                    android:hint="@string/selectPublisher"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="30"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:maxLength="30"
+                        android:text="@={addEditComicBookItemViewModel.inputPublisher}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:hint="@string/selectFormat">
 
                     <AutoCompleteTextView
@@ -73,7 +102,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:hint="@string/selectType">
 
                     <AutoCompleteTextView
@@ -88,7 +117,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:hint="@string/selectLanguage">
 
                     <AutoCompleteTextView
@@ -99,29 +128,47 @@
                         android:text="@={addEditComicBookItemViewModel.inputLanguage}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/addVolumesReleased"
+                    style="?attr/textInputOutlinedStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Volumes Released"
-                    android:inputType="number"
-                    android:padding="15dp"
-                    android:text="@={addEditComicBookItemViewModel.inputVolumesReleased}" />
+                    android:layout_marginTop="12dp"
+                    android:hint="@string/selectVolumesReleased"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true">
 
-                <EditText
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:text="@={addEditComicBookItemViewModel.inputVolumesReleased}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/addVolumesOwned"
+                    style="?attr/textInputOutlinedStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Volumes Owned"
-                    android:inputType="number"
-                    android:padding="15dp"
-                    android:text="@={addEditComicBookItemViewModel.inputVolumesOwned}" />
+                    android:layout_marginTop="-10dp"
+                    android:hint="@string/selectVolumesOwned"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:text="@={addEditComicBookItemViewModel.inputVolumesOwned}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="-10dp"
                     android:hint="@string/selectPagesColor">
 
                     <AutoCompleteTextView
@@ -134,21 +181,23 @@
 
                 <Button
                     android:id="@+id/addImage"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
+                    android:paddingVertical="16dp"
                     android:text="@={addEditComicBookItemViewModel.addOrEditImageButtonText}" />
 
                 <Button
                     android:id="@+id/saveButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:backgroundTint="@color/yellow"
                     android:onClick="@{()->addEditComicBookItemViewModel.saveOrUpdate()}"
-                    android:src="@drawable/ic_add"
-                    android:text="@={addEditComicBookItemViewModel.addOrEditButtonText}"
-                    android:layout_gravity="center"/>
+                    android:paddingVertical="16dp"
+                    android:text="@={addEditComicBookItemViewModel.addOrEditButtonText}" />
 
             </LinearLayout>
 
