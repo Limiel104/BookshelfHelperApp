@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -31,25 +32,7 @@ class ComicBookListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        binding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_comicbook_list, container,false)
-
-        binding.addOrEditButtonCB.setOnClickListener{
-            if(comicBookViewModel.updateRequested){
-                val comicBook = comicBookViewModel.comicBookToUpdate
-                val passedData = ComicBookListFragmentDirections.actionComicbookListFragmentToAddEditComicBookFragment(comicBook)
-                it.findNavController().navigate(passedData)
-                comicBookViewModel.initUpdate(comicBook) //required for go back action so that buttons are set properly
-            }
-            else{
-                it.findNavController().navigate(R.id.action_comicbookListFragment_to_addEditComicBookFragment)
-            }
-        }
-
-        binding.booksButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_comicbookListFragment_to_bookListFragment)
-        }
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_comicbook_list, container,false)
 
         initRecycleView()
 
@@ -60,17 +43,10 @@ class ComicBookListFragment : Fragment() {
         binding.comicBookListViewModel = comicBookViewModel
         binding.lifecycleOwner = this
 
+        setOnClickListeners()
         displayComicBooksList()
-
-        val swipeToDelete = object: SwipeToDelete(){
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
-                comicBookViewModel.delete(adapter.getComicBookAtPosition(position))
-            }
-        }
-
-        val itemTouchHelper = ItemTouchHelper(swipeToDelete)
-        itemTouchHelper.attachToRecyclerView(binding.recycleViewCB)
+        setSwipeToDelete()
+        setSearchView()
 
         return  binding.root
     }
@@ -94,5 +70,63 @@ class ComicBookListFragment : Fragment() {
 
     private fun listItemClicked(comicBook: ComicBook){
         comicBookViewModel.initUpdate(comicBook)
+    }
+
+    private fun setOnClickListeners(){
+        binding.addOrEditButtonCB.setOnClickListener{
+            if(comicBookViewModel.updateRequested){
+                val comicBook = comicBookViewModel.comicBookToUpdate
+                val passedData = ComicBookListFragmentDirections.actionComicbookListFragmentToAddEditComicBookFragment(comicBook)
+                it.findNavController().navigate(passedData)
+                comicBookViewModel.initUpdate(comicBook) //required for go back action so that buttons are set properly
+            }
+            else{
+                it.findNavController().navigate(R.id.action_comicbookListFragment_to_addEditComicBookFragment)
+            }
+        }
+
+        binding.booksButton.setOnClickListener {
+            it.findNavController().navigate(R.id.action_comicbookListFragment_to_bookListFragment)
+        }
+    }
+
+    private fun setSwipeToDelete(){
+        val swipeToDelete = object: SwipeToDelete(){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                comicBookViewModel.delete(adapter.getComicBookAtPosition(position))
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeToDelete)
+        itemTouchHelper.attachToRecyclerView(binding.recycleViewCB)
+    }
+
+    private fun setSearchView(){
+        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if(query != null ){
+                    searchDatabase(query)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                if(query != null ){
+                    searchDatabase(query)
+                }
+                return true
+            }
+        })
+    }
+
+    private fun searchDatabase(query: String){
+        val searchQuery = "%$query%"
+
+        comicBookViewModel.searchComicBooks(searchQuery).observe(viewLifecycleOwner) { list ->
+            list.let {
+                adapter.setData(it)
+            }
+        }
     }
 }

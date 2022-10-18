@@ -13,7 +13,7 @@ import com.example.bookshelfhelper.databinding.ComicbookListItemBinding
 class ComicBookListRecycleViewAdapter(private val selectedItem:(ComicBook)->Unit)
     : RecyclerView.Adapter<ComicBookListRecycleViewAdapter.ListViewHolder>() {
 
-    private val comicBooksList = ArrayList<ComicBook>()
+    private var comicBooksList = ArrayList<ComicBook>()
     var isItemSelected = false
     var checkedPosition = -1
 
@@ -39,6 +39,11 @@ class ComicBookListRecycleViewAdapter(private val selectedItem:(ComicBook)->Unit
 
     fun getComicBookAtPosition(position: Int): ComicBook {
         return comicBooksList[position]
+    }
+
+    fun setData(newList: List<ComicBook>){
+        comicBooksList = newList as ArrayList<ComicBook>
+        notifyDataSetChanged()
     }
 
     inner class ListViewHolder(val binding: ComicbookListItemBinding) : RecyclerView.ViewHolder(binding.root){

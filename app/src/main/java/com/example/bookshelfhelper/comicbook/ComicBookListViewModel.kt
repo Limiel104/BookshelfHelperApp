@@ -1,9 +1,11 @@
 package com.example.bookshelfhelper.comicbook
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.bookshelfhelper.data.model.Book
 import com.example.bookshelfhelper.data.model.ComicBook
 import com.example.bookshelfhelper.data.repository.ComicBookRepository
 import kotlinx.coroutines.Dispatchers
@@ -47,5 +49,9 @@ class ComicBookListViewModel(private val repository: ComicBookRepository) : View
         viewModelScope.launch( Dispatchers.IO) {
             repository.delete(comicBook)
         }
+    }
+
+    fun searchComicBooks(searchQuery: String): LiveData<List<ComicBook>> {
+        return repository.searchComicBooks(searchQuery)
     }
 }

@@ -24,4 +24,6 @@ interface ComicBookDao {
     @Query("SELECT * FROM comics_table")
     fun getAllComicBooks():LiveData<List<ComicBook>>
 
+    @Query("SELECT * FROM comics_table WHERE title LIKE :searchQuery OR author LIKE :searchQuery OR publisher LIKE :searchQuery")
+    fun searchComicBooks(searchQuery: String): LiveData<List<ComicBook>>
 }

@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -33,22 +35,6 @@ class BookListFragment : Fragment(){
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_book_list, container,false)
 
-        binding.addOrEditButton.setOnClickListener{
-            if(bookViewModel.updateRequested){
-                val book = bookViewModel.bookToUpdate
-                val passedData = BookListFragmentDirections.actionBookListFragmentToAddEditBookFragment(book)
-                it.findNavController().navigate(passedData)
-                bookViewModel.initUpdate(book) //required for go back action so that buttons are set properly
-            }
-            else{
-                it.findNavController().navigate(R.id.action_bookListFragment_to_addEditBookFragment)
-            }
-        }
-
-        binding.comicbooksButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_bookListFragment_to_comicbookListFragment)
-        }
-
         initRecycleView()
 
         val dao = BookshelfDatabase.getInstance(requireContext()).bookDao
@@ -58,17 +44,10 @@ class BookListFragment : Fragment(){
         binding.bookListViewModel = bookViewModel
         binding.lifecycleOwner = this
 
+        setOnClickListeners()
         displayBooksList()
-
-        val swipeToDelete = object: SwipeToDelete(){
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
-                bookViewModel.delete(adapter.getBookAtPosition(position))
-            }
-        }
-
-        val itemTouchHelper = ItemTouchHelper(swipeToDelete)
-        itemTouchHelper.attachToRecyclerView(binding.recycleView)
+        setSwipeToDelete()
+        setSearchView()
 
         return  binding.root
     }
@@ -92,5 +71,63 @@ class BookListFragment : Fragment(){
 
     private fun listItemClicked(book: Book){
         bookViewModel.initUpdate(book)
+    }
+
+    private fun setOnClickListeners(){
+        binding.addOrEditButton.setOnClickListener{
+            if(bookViewModel.updateRequested){
+                val book = bookViewModel.bookToUpdate
+                val passedData = BookListFragmentDirections.actionBookListFragmentToAddEditBookFragment(book)
+                it.findNavController().navigate(passedData)
+                bookViewModel.initUpdate(book) //required for go back action so that buttons are set properly
+            }
+            else{
+                it.findNavController().navigate(R.id.action_bookListFragment_to_addEditBookFragment)
+            }
+        }
+
+        binding.comicbooksButton.setOnClickListener {
+            it.findNavController().navigate(R.id.action_bookListFragment_to_comicbookListFragment)
+        }
+    }
+
+    private fun setSwipeToDelete(){
+        val swipeToDelete = object: SwipeToDelete(){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                bookViewModel.delete(adapter.getBookAtPosition(position))
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeToDelete)
+        itemTouchHelper.attachToRecyclerView(binding.recycleView)
+    }
+
+    private fun setSearchView(){
+        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if(query != null ){
+                    searchDatabase(query)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                if(query != null ){
+                    searchDatabase(query)
+                }
+                return true
+            }
+        })
+    }
+
+    private fun searchDatabase(query: String){
+        val searchQuery = "%$query%"
+
+        bookViewModel.searchBooks(searchQuery).observe(viewLifecycleOwner) { list ->
+            list.let {
+                adapter.setData(it)
+            }
+        }
     }
 }
