@@ -54,4 +54,12 @@ class BookListViewModel(private val repository: BookRepository) : ViewModel() {
     fun searchBooks(searchQuery: String): LiveData<List<Book>>{
         return repository.searchBooks(searchQuery)
     }
+
+    fun getAllBooks(): LiveData<List<Book>>{
+        return repository.getAllBooks()
+    }
+
+    fun getFilteredType(searchQuery: String): LiveData<List<Book>>{
+        return  repository.getFilteredType(searchQuery)
+    }
 }

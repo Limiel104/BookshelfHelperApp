@@ -20,7 +20,15 @@ class BookRepository(private val bookDao: BookDao) {
         bookDao.deleteBook(book)
     }
 
+    fun getAllBooks(): LiveData<List<Book>>{
+        return bookDao.getAllBooks()
+    }
+
     fun searchBooks(searchQuery: String): LiveData<List<Book>>{
         return bookDao.searchBooks(searchQuery)
+    }
+
+    fun getFilteredType(searchQuery: String): LiveData<List<Book>>{
+        return bookDao.getFilteredType(searchQuery)
     }
 }

@@ -48,6 +48,7 @@ class BookListFragment : Fragment(){
         displayBooksList()
         setSwipeToDelete()
         setSearchView()
+        setFilterChips()
 
         return  binding.root
     }
@@ -127,6 +128,36 @@ class BookListFragment : Fragment(){
         bookViewModel.searchBooks(searchQuery).observe(viewLifecycleOwner) { list ->
             list.let {
                 adapter.setData(it)
+            }
+        }
+    }
+
+    private fun setFilterChips(){
+
+        binding.chip1.setOnClickListener{
+            Toast.makeText(context,"All Books",Toast.LENGTH_LONG).show()
+            bookViewModel.getAllBooks().observe(viewLifecycleOwner) { list ->
+                list.let {
+                    adapter.setData(it)
+                }
+            }
+        }
+
+        binding.chip2.setOnClickListener{
+            Toast.makeText(context,"Hard Cover",Toast.LENGTH_LONG).show()
+            bookViewModel.getFilteredType("Hard Cover").observe(viewLifecycleOwner) { list ->
+                list.let {
+                    adapter.setData(it)
+                }
+            }
+        }
+
+        binding.chip3.setOnClickListener{
+            Toast.makeText(context,"Soft Cover",Toast.LENGTH_LONG).show()
+            bookViewModel.getFilteredType("Soft Cover").observe(viewLifecycleOwner) { list ->
+                list.let {
+                    adapter.setData(it)
+                }
             }
         }
     }

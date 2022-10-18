@@ -24,6 +24,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                app:selectionRequired="true"
+                app:singleSelection="true" >
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:id="@+id/chip1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="All"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:id="@+id/chip2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hard Cover"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:id="@+id/chip3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Soft Cover"/>
+
+            </com.google.android.material.chip.ChipGroup>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleView"
                 android:layout_width="match_parent"
@@ -32,7 +63,7 @@
         </LinearLayout>
 
         <Button
-            style="@style/Widget.Material3.Button.ElevatedButton"
+
             android:id="@+id/addOrEditButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +76,7 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
-            style="@style/Widget.Material3.Button.ElevatedButton"
+
             android:id="@+id/comicbooksButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
