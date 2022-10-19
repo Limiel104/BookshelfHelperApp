@@ -63,16 +63,19 @@ class AddEditBookFragment : Fragment(){
 
     private fun prepareAutocompleteFields(){
 
+        val genres = resources.getStringArray(R.array.genres)
         val formats = resources.getStringArray(R.array.formats)
         val types = resources.getStringArray(R.array.types)
         val languages = resources.getStringArray(R.array.languages)
 
+        val genresArrayAdapter = context?.let { ArrayAdapter(it,R.layout.drop_down_list_item,genres) }
         val  formatsArrayAdapter =
             context?.let { ArrayAdapter(it,R.layout.drop_down_list_item,formats) }
         val  typesArrayAdapter = context?.let { ArrayAdapter(it,R.layout.drop_down_list_item,types) }
         val  languagesArrayAdapter =
             context?.let { ArrayAdapter(it,R.layout.drop_down_list_item,languages) }
 
+        binding.addGenre.setAdapter(genresArrayAdapter)
         binding.addFormat.setAdapter(formatsArrayAdapter)
         binding.addType.setAdapter(typesArrayAdapter)
         binding.addLanguage.setAdapter(languagesArrayAdapter)

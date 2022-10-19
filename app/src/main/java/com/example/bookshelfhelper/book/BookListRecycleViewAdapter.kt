@@ -53,7 +53,7 @@ class BookListRecycleViewAdapter(private val selectedItem:(Book)->Unit)
             binding.itemAuthor.text = book.author
             binding.itemPublisher.text = book.publisher
 
-            val text = book.format + " | " + book.type + " | " + book.language
+            val text = book.format + " | " + book.type + " | " + book.language + " | " + book.genre
             binding.itemFTL.text = text
 
             Glide.with(binding.itemImg.context)

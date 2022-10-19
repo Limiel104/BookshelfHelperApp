@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -20,6 +21,7 @@ import com.example.bookshelfhelper.data.BookshelfDatabase
 import com.example.bookshelfhelper.data.model.ComicBook
 import com.example.bookshelfhelper.data.repository.ComicBookRepository
 import com.example.bookshelfhelper.databinding.FragmentComicbookListBinding
+import com.google.android.material.chip.Chip
 
 class ComicBookListFragment : Fragment() {
 
@@ -47,6 +49,7 @@ class ComicBookListFragment : Fragment() {
         displayComicBooksList()
         setSwipeToDelete()
         setSearchView()
+        setFilterChips()
 
         return  binding.root
     }
@@ -126,6 +129,33 @@ class ComicBookListFragment : Fragment() {
         comicBookViewModel.searchComicBooks(searchQuery).observe(viewLifecycleOwner) { list ->
             list.let {
                 adapter.setData(it)
+            }
+        }
+    }
+
+    private fun setFilterChips(){
+
+        val selectedChip = binding.chipGroup.children.filter {
+            (it as Chip).isChecked
+        }.map {
+            (it as Chip).text.toString()
+        }
+
+        binding.chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+
+            if(selectedChip.joinToString() == "All") {
+                comicBookViewModel.getAllComicBooks().observe(viewLifecycleOwner) { list ->
+                    list.let {
+                        adapter.setData(it)
+                    }
+                }
+            }
+            else{
+                comicBookViewModel.getFilteredGenre(selectedChip.joinToString()).observe(viewLifecycleOwner) { list ->
+                    list.let {
+                        adapter.setData(it)
+                    }
+                }
             }
         }
     }

@@ -17,6 +17,7 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
     val inputTitle = MutableLiveData<String>()
     val inputAuthor = MutableLiveData<String>()
     val inputPublisher = MutableLiveData<String>()
+    val inputGenre = MutableLiveData<String>()
     val inputFormat = MutableLiveData<String>()
     val inputType = MutableLiveData<String>()
     val inputLanguage = MutableLiveData<String>()
@@ -57,6 +58,12 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
             inputPublisher.value == null -> statusMessage.value = Event("Please enter book's publisher")
         }
 
+        val genre : String = if(inputGenre.value == null){
+            bookToUpdate.genre
+        } else {
+            inputGenre.value!!
+        }
+
         val format : String = if(inputFormat.value == null){
             bookToUpdate.format
         } else {
@@ -81,7 +88,7 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
             inputImagePath
         }
 
-        performUpdate(format,type,language,imagePath)
+        performUpdate(genre,format,type,language,imagePath)
     }
 
     private fun validateSave(){
@@ -90,6 +97,7 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
             inputTitle.value == null -> statusMessage.value = Event("Please enter book's title")
             inputAuthor.value == null -> statusMessage.value = Event("Please enter book's author")
             inputPublisher.value == null -> statusMessage.value = Event("Please enter book's publisher")
+            inputGenre.value == null -> statusMessage.value = Event("Please choose book's genre")
             inputFormat.value == null -> statusMessage.value = Event("Please choose book's format")
             inputType.value == null -> statusMessage.value = Event("Please choose book's type")
             inputLanguage.value == null ->  statusMessage.value = Event("Please choose book's language")
@@ -98,13 +106,13 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
         }
     }
 
-    private fun performUpdate(format: String, type: String, language: String, imagePath: String){
+    private fun performUpdate(genre: String, format: String, type: String, language: String, imagePath: String){
 
         val title = inputTitle.value!!
         val author = inputAuthor.value!!
         val publisher = inputPublisher.value!!
 
-        update(Book(bookToUpdate.id,title,author,publisher,format,type,language,imagePath))
+        update(Book(bookToUpdate.id,title,author,publisher,genre,format,type,language,imagePath))
 
         isDone.value = true
     }
@@ -114,12 +122,13 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
         val title = inputTitle.value!!
         val author = inputAuthor.value!!
         val publisher = inputPublisher.value!!
+        val genre = inputGenre.value!!
         val format = inputFormat.value!!
         val type = inputType.value!!
         val language = inputLanguage.value!!
         val imagePath = inputImagePath
 
-        insert(Book(0,title,author,publisher,format,type,language,imagePath))
+        insert(Book(0,title,author,publisher,genre,format,type,language,imagePath))
 
         isDone.value = true
     }

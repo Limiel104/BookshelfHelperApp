@@ -53,7 +53,7 @@ class ComicBookListRecycleViewAdapter(private val selectedItem:(ComicBook)->Unit
             binding.itemAuthor.text = comicBook.author
             binding.itemPublisher.text = comicBook.publisher
 
-            val text = comicBook.format + " | " + comicBook.type + " | " + comicBook.language
+            val text = comicBook.format + " | " + comicBook.type + " | " + comicBook.language + " | " + comicBook.genre
             binding.itemFTL.text = text
 
             val text2 = comicBook.pagesColor + " | " + comicBook.volumesOwned + "/" + comicBook.volumesReleased

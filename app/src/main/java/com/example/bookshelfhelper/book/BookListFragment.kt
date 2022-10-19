@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -21,6 +22,7 @@ import com.example.bookshelfhelper.data.BookshelfDatabase
 import com.example.bookshelfhelper.data.model.Book
 import com.example.bookshelfhelper.data.repository.BookRepository
 import com.example.bookshelfhelper.databinding.FragmentBookListBinding
+import com.google.android.material.chip.Chip
 
 class BookListFragment : Fragment(){
 
@@ -134,29 +136,26 @@ class BookListFragment : Fragment(){
 
     private fun setFilterChips(){
 
-        binding.chip1.setOnClickListener{
-            Toast.makeText(context,"All Books",Toast.LENGTH_LONG).show()
-            bookViewModel.getAllBooks().observe(viewLifecycleOwner) { list ->
-                list.let {
-                    adapter.setData(it)
-                }
-            }
+        val selectedChip = binding.chipGroup.children.filter {
+            (it as Chip).isChecked
+        }.map {
+            (it as Chip).text.toString()
         }
 
-        binding.chip2.setOnClickListener{
-            Toast.makeText(context,"Hard Cover",Toast.LENGTH_LONG).show()
-            bookViewModel.getFilteredType("Hard Cover").observe(viewLifecycleOwner) { list ->
-                list.let {
-                    adapter.setData(it)
+        binding.chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+
+            if(selectedChip.joinToString() == "All") {
+                bookViewModel.getAllBooks().observe(viewLifecycleOwner) { list ->
+                    list.let {
+                        adapter.setData(it)
+                    }
                 }
             }
-        }
-
-        binding.chip3.setOnClickListener{
-            Toast.makeText(context,"Soft Cover",Toast.LENGTH_LONG).show()
-            bookViewModel.getFilteredType("Soft Cover").observe(viewLifecycleOwner) { list ->
-                list.let {
-                    adapter.setData(it)
+            else{
+                bookViewModel.getFilteredGenre(selectedChip.joinToString()).observe(viewLifecycleOwner) { list ->
+                    list.let {
+                        adapter.setData(it)
+                    }
                 }
             }
         }

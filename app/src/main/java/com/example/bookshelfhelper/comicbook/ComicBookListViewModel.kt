@@ -42,7 +42,7 @@ class ComicBookListViewModel(private val repository: ComicBookRepository) : View
     private fun returnToInitLayout(){
         addOrEditButtonText.value = "Add"
         updateRequested = false
-        comicBookToUpdate = ComicBook(-1,"","","","","","",-1,-1,"","")
+        comicBookToUpdate = ComicBook(-1,"","","","","","","",-1,-1,"","")
     }
 
     fun delete(comicBook: ComicBook){
@@ -53,5 +53,13 @@ class ComicBookListViewModel(private val repository: ComicBookRepository) : View
 
     fun searchComicBooks(searchQuery: String): LiveData<List<ComicBook>> {
         return repository.searchComicBooks(searchQuery)
+    }
+
+    fun getAllComicBooks(): LiveData<List<ComicBook>>{
+        return repository.getAllComicBooks()
+    }
+
+    fun getFilteredGenre(searchQuery: String): LiveData<List<ComicBook>>{
+        return repository.getFilteredGenre(searchQuery)
     }
 }

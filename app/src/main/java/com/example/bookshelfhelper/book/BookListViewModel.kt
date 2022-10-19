@@ -42,7 +42,7 @@ class BookListViewModel(private val repository: BookRepository) : ViewModel() {
     private fun returnToInitLayout(){
         addOrEditButtonText.value = "Add"
         updateRequested = false
-        bookToUpdate = Book(-1,"","","","","","","")
+        bookToUpdate = Book(-1,"","","","","","","","")
     }
 
     fun delete(book: Book){
@@ -57,6 +57,10 @@ class BookListViewModel(private val repository: BookRepository) : ViewModel() {
 
     fun getAllBooks(): LiveData<List<Book>>{
         return repository.getAllBooks()
+    }
+
+    fun getFilteredGenre(searchQuery: String): LiveData<List<Book>>{
+        return  repository.getFilteredGenre(searchQuery)
     }
 
     fun getFilteredType(searchQuery: String): LiveData<List<Book>>{

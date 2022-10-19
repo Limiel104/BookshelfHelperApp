@@ -16,6 +16,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
     val inputTitle = MutableLiveData<String>()
     val inputAuthor = MutableLiveData<String>()
     val inputPublisher = MutableLiveData<String>()
+    val inputGenre = MutableLiveData<String>()
     val inputFormat = MutableLiveData<String>()
     val inputType = MutableLiveData<String>()
     val inputLanguage = MutableLiveData<String>()
@@ -61,6 +62,12 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
             inputVolumesOwned.value == null -> statusMessage.value = Event("Please enter number of owned volumes of comic book")
         }
 
+        val genre : String = if(inputGenre.value == null){
+            comicBookToUpdate.genre
+        } else {
+            inputGenre.value!!
+        }
+
         val format : String = if(inputFormat.value == null){
             comicBookToUpdate.format
         } else {
@@ -91,27 +98,28 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
             inputImagePath
         }
 
-        performUpdate(format,type,language,pagesColor,imagePath)
+        performUpdate(genre,format,type,language,pagesColor,imagePath)
     }
 
     private fun validateSave(){
 
         when{
-            inputTitle.value == null -> statusMessage.value = Event("Please enter book's title")
-            inputAuthor.value == null -> statusMessage.value = Event("Please enter book's author")
-            inputPublisher.value == null -> statusMessage.value = Event("Please enter book's publisher")
-            inputFormat.value == null -> statusMessage.value = Event("Please choose book's format")
-            inputType.value == null -> statusMessage.value = Event("Please choose book's type")
-            inputLanguage.value == null ->  statusMessage.value = Event("Please choose book's language")
+            inputTitle.value == null -> statusMessage.value = Event("Please enter comic book's title")
+            inputAuthor.value == null -> statusMessage.value = Event("Please enter comic book's author")
+            inputPublisher.value == null -> statusMessage.value = Event("Please enter comic book's publisher")
+            inputGenre.value == null -> statusMessage.value = Event("Please choose comic book's genre")
+            inputFormat.value == null -> statusMessage.value = Event("Please choose comic book's format")
+            inputType.value == null -> statusMessage.value = Event("Please choose comic book's type")
+            inputLanguage.value == null ->  statusMessage.value = Event("Please choose comic book's language")
             inputVolumesReleased.value == null -> statusMessage.value = Event("Please enter number of released volumes of comic book")
             inputVolumesOwned.value == null -> statusMessage.value = Event("Please enter number of owned volumes of comic book")
             inputPagesColor.value == null -> statusMessage.value = Event("Please choose comic book's pages color")
-            inputImagePath == "" ->  statusMessage.value = Event("Please add book's cover photo")
+            inputImagePath == "" ->  statusMessage.value = Event("Please add comic book's cover photo")
             else -> performSave()
         }
     }
 
-    private fun performUpdate(format: String, type: String, language: String, pagesColor: String, imagePath: String){
+    private fun performUpdate(genre: String, format: String, type: String, language: String, pagesColor: String, imagePath: String){
 
         val title = inputTitle.value!!
         val author = inputAuthor.value!!
@@ -119,7 +127,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
         val volumesReleased = inputVolumesReleased.value!!.toInt()
         val volumesOwned = inputVolumesOwned.value!!.toInt()
 
-        update(ComicBook(comicBookToUpdate.id,title,author,publisher,format,type,language,volumesReleased,volumesOwned,pagesColor,imagePath))
+        update(ComicBook(comicBookToUpdate.id,title,author,publisher,genre,format,type,language,volumesReleased,volumesOwned,pagesColor,imagePath))
 
         isDone.value = true
     }
@@ -129,6 +137,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
         val title = inputTitle.value!!
         val author = inputAuthor.value!!
         val publisher = inputPublisher.value!!
+        val genre = inputGenre.value!!
         val format = inputFormat.value!!
         val type = inputType.value!!
         val language = inputLanguage.value!!
@@ -137,7 +146,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
         val pagesColor = inputPagesColor.value!!
         val imagePath = inputImagePath
 
-        insert(ComicBook(0,title,author,publisher,format,type,language,volumesReleased,volumesOwned,pagesColor,imagePath))
+        insert(ComicBook(0,title,author,publisher,genre,format,type,language,volumesReleased,volumesOwned,pagesColor,imagePath))
 
         isDone.value = true
     }

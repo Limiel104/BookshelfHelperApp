@@ -28,6 +28,10 @@ class BookRepository(private val bookDao: BookDao) {
         return bookDao.searchBooks(searchQuery)
     }
 
+    fun getFilteredGenre(searchQuery: String): LiveData<List<Book>>{
+        return bookDao.getFilteredGenre(searchQuery)
+    }
+
     fun getFilteredType(searchQuery: String): LiveData<List<Book>>{
         return bookDao.getFilteredType(searchQuery)
     }

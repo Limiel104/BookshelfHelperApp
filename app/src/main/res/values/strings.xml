@@ -3,12 +3,28 @@
     <string name="selectTitle">Title</string>
     <string name="selectAuthor">Author</string>
     <string name="selectPublisher">Publisher</string>
+    <string name="selectGenre"> Select Genre</string>
     <string name="selectFormat"> Select Format</string>
     <string name="selectType"> Select Type</string>
     <string name="selectLanguage"> Select Language</string>
     <string name="selectVolumesReleased">Volumes Released</string>
     <string name="selectVolumesOwned">Volumes Owned</string>
     <string name="selectPagesColor"> Select Pages Color</string>
+
+    <string-array name="genres">
+        <item>Action</item>
+        <item>Adventure</item>
+        <item>Comedy</item>
+        <item>Drama</item>
+        <item>Fantasy</item>
+        <item>Historical Fiction</item>
+        <item>Horror</item>
+        <item>Mystery</item>
+        <item>Nonfiction</item>
+        <item>Romance</item>
+        <item>Science Fiction</item>
+        <item>Thriller</item>
+    </string-array>
 
     <string-array name="formats">
         <item>A5</item>

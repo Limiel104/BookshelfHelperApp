@@ -14,6 +14,7 @@ open class Book (
     val title: String,
     val author: String,
     val publisher: String,
+    val genre: String,
     val format: String,
     val type: String,
     val language: String,

@@ -20,7 +20,15 @@ class ComicBookRepository(private val comicBookDao: ComicBookDao) {
         comicBookDao.deleteComicBook(comicBook)
     }
 
+    fun getAllComicBooks(): LiveData<List<ComicBook>>{
+        return comicBookDao.getAllComicBooks()
+    }
+
     fun searchComicBooks(searchQuery: String): LiveData<List<ComicBook>>{
         return comicBookDao.searchComicBooks(searchQuery)
+    }
+
+    fun getFilteredGenre(searchQuery: String): LiveData<List<ComicBook>>{
+        return comicBookDao.getFilteredGenre(searchQuery)
     }
 }
