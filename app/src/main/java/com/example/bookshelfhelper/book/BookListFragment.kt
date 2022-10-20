@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
@@ -89,9 +88,9 @@ class BookListFragment : Fragment(){
             }
         }
 
-        binding.comicbooksButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_bookListFragment_to_comicbookListFragment)
-        }
+//        binding.comicbooksButton.setOnClickListener {
+//            it.findNavController().navigate(R.id.action_bookListFragment_to_comicbookListFragment)
+//        }
     }
 
     private fun setSwipeToDelete(){

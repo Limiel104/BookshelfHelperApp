@@ -88,9 +88,9 @@ class ComicBookListFragment : Fragment() {
             }
         }
 
-        binding.booksButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_comicbookListFragment_to_bookListFragment)
-        }
+//        binding.booksButton.setOnClickListener {
+//            it.findNavController().navigate(R.id.action_comicbookListFragment_to_bookListFragment)
+//        }
     }
 
     private fun setSwipeToDelete(){

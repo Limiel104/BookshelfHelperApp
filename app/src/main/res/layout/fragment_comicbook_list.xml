@@ -25,121 +25,128 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroup"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:chipSpacingHorizontal="2dp"
-                app:chipSpacingVertical="3dp"
-                app:selectionRequired="true"
-                app:singleSelection="true">
+                android:layout_height="wrap_content">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip1"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="All"
-                    app:chipMinTouchTargetSize="0dp" />
+                    android:layout_marginVertical="10dp"
+                    android:paddingHorizontal="5dp"
+                    app:chipSpacingHorizontal="3dp"
+                    app:selectionRequired="true"
+                    app:singleLine="true"
+                    app:singleSelection="true">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip2"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fantasy"
-                    app:chipMinTouchTargetSize="0dp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip1"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="All"
+                        app:chipMinTouchTargetSize="0dp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip3"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Romance"
-                    app:chipMinTouchTargetSize="0dp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip2"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fantasy"
+                        app:chipMinTouchTargetSize="0dp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip4"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Drama"
-                    app:chipMinTouchTargetSize="0dp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip3"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Romance"
+                        app:chipMinTouchTargetSize="0dp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip5"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Comedy"
-                    app:chipMinTouchTargetSize="0dp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip4"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Drama"
+                        app:chipMinTouchTargetSize="0dp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip6"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mystery"
-                    app:chipMinTouchTargetSize="0dp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip5"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Comedy"
+                        app:chipMinTouchTargetSize="0dp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip7"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Science Fiction"
-                    app:chipMinTouchTargetSize="0dp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip6"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mystery"
+                        app:chipMinTouchTargetSize="0dp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip8"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Adventure"
-                    app:chipMinTouchTargetSize="0dp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip7"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Science Fiction"
+                        app:chipMinTouchTargetSize="0dp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip9"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Horror"
-                    app:chipMinTouchTargetSize="0dp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip8"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adventure"
+                        app:chipMinTouchTargetSize="0dp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip10"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Thriller"
-                    app:chipMinTouchTargetSize="0dp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip9"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Horror"
+                        app:chipMinTouchTargetSize="0dp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip11"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Action"
-                    app:chipMinTouchTargetSize="0dp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip10"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thriller"
+                        app:chipMinTouchTargetSize="0dp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip12"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Historical Fiction"
-                    app:chipMinTouchTargetSize="0dp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip11"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Action"
+                        app:chipMinTouchTargetSize="0dp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip13"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nonfiction"
-                    app:chipMinTouchTargetSize="0dp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip12"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Historical Fiction"
+                        app:chipMinTouchTargetSize="0dp" />
 
-            </com.google.android.material.chip.ChipGroup>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip13"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nonfiction"
+                        app:chipMinTouchTargetSize="0dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </HorizontalScrollView>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleViewCB"
@@ -167,6 +174,7 @@
             android:layout_margin="15dp"
             android:backgroundTint="@color/yellow"
             android:text="Books"
+            android:visibility="invisible"
             android:textColor="@color/white"
             android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@id/addOrEditButtonCB"
