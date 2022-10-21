@@ -53,22 +53,19 @@ class BookListRecycleViewAdapter(private val selectedItem:(Book)->Unit)
             binding.itemAuthor.text = book.author
             binding.itemPublisher.text = book.publisher
 
-            val text = book.format + " | " + book.type + " | " + book.language + " | " + book.genre
-            binding.itemFTL.text = text
-
             Glide.with(binding.itemImg.context)
                 .load(book.imagePath)
                 .into(binding.itemImg)
 
             if(checkedPosition == -1) {
-                binding.bookItemLayout.setCardBackgroundColor(Color.WHITE)
+                binding.bookItemLayout.setBackgroundColor(Color.WHITE)
             }
             else {
                 if(checkedPosition == adapterPosition) {
-                    binding.bookItemLayout.setCardBackgroundColor(Color.GRAY)
+                    binding.bookItemLayout.setBackgroundColor(Color.GRAY)
                 }
                 else {
-                    binding.bookItemLayout.setCardBackgroundColor(Color.WHITE)
+                    binding.bookItemLayout.setBackgroundColor(Color.WHITE)
                 }
             }
 
@@ -76,13 +73,13 @@ class BookListRecycleViewAdapter(private val selectedItem:(Book)->Unit)
 
                 if(isItemSelected){
                     if(checkedPosition == adapterPosition){
-                        binding.bookItemLayout.setCardBackgroundColor(Color.WHITE)
+                        binding.bookItemLayout.setBackgroundColor(Color.WHITE)
                         isItemSelected = false
                         selectedItem(book)
                     }
                 }
                 else{
-                    binding.bookItemLayout.setCardBackgroundColor(Color.GRAY)
+                    binding.bookItemLayout.setBackgroundColor(Color.GRAY)
 
                     if(checkedPosition != adapterPosition){
                         notifyItemChanged(checkedPosition)

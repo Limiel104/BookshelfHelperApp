@@ -53,25 +53,19 @@ class ComicBookListRecycleViewAdapter(private val selectedItem:(ComicBook)->Unit
             binding.itemAuthor.text = comicBook.author
             binding.itemPublisher.text = comicBook.publisher
 
-            val text = comicBook.format + " | " + comicBook.type + " | " + comicBook.language + " | " + comicBook.genre
-            binding.itemFTL.text = text
-
-            val text2 = comicBook.pagesColor + " | " + comicBook.volumesOwned + "/" + comicBook.volumesReleased
-            binding.itemPCVOVR.text = text2
-
             Glide.with(binding.itemImg.context)
                 .load(comicBook.imagePath)
                 .into(binding.itemImg)
 
             if(checkedPosition == -1) {
-                binding.comicBookItemLayout.setCardBackgroundColor(Color.WHITE)
+                binding.comicBookItemLayout.setBackgroundColor(Color.WHITE)
             }
             else {
                 if(checkedPosition == adapterPosition) {
-                    binding.comicBookItemLayout.setCardBackgroundColor(Color.GRAY)
+                    binding.comicBookItemLayout.setBackgroundColor(Color.GRAY)
                 }
                 else {
-                    binding.comicBookItemLayout.setCardBackgroundColor(Color.WHITE)
+                    binding.comicBookItemLayout.setBackgroundColor(Color.WHITE)
                 }
             }
 
@@ -79,13 +73,13 @@ class ComicBookListRecycleViewAdapter(private val selectedItem:(ComicBook)->Unit
 
                 if(isItemSelected){
                     if(checkedPosition == adapterPosition){
-                        binding.comicBookItemLayout.setCardBackgroundColor(Color.WHITE)
+                        binding.comicBookItemLayout.setBackgroundColor(Color.WHITE)
                         isItemSelected = false
                         selectedItem(comicBook)
                     }
                 }
                 else{
-                    binding.comicBookItemLayout.setCardBackgroundColor(Color.GRAY)
+                    binding.comicBookItemLayout.setBackgroundColor(Color.GRAY)
 
                     if(checkedPosition != adapterPosition){
                         notifyItemChanged(checkedPosition)
