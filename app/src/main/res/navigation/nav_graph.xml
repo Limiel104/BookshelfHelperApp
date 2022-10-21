@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_bookListFragment_to_comicbookListFragment"
             app:destination="@id/comicbookListFragment" />
+        <action
+            android:id="@+id/action_bookListFragment_to_bookDetails"
+            app:destination="@id/bookDetails" />
     </fragment>
     <fragment
         android:id="@+id/addEditBookFragment"
@@ -39,6 +42,9 @@
         <action
             android:id="@+id/action_comicbookListFragment_to_addEditComicBookFragment"
             app:destination="@id/addEditComicBookFragment" />
+        <action
+            android:id="@+id/action_comicbookListFragment_to_comicBookDetails"
+            app:destination="@id/comicBookDetails" />
     </fragment>
     <fragment
         android:id="@+id/addEditComicBookFragment"
@@ -50,5 +56,23 @@
             app:argType="com.example.bookshelfhelper.data.model.ComicBook"
             app:nullable="true"
             android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookDetails"
+        android:name="com.example.bookshelfhelper.book.BookDetailsFragment"
+        android:label="fragment_book_details"
+        tools:layout="@layout/fragment_book_details" >
+        <argument
+            android:name="bookToDisplay"
+            app:argType="com.example.bookshelfhelper.data.model.Book" />
+    </fragment>
+    <fragment
+        android:id="@+id/comicBookDetails"
+        android:name="com.example.bookshelfhelper.comicbook.ComicBookDetailsFragment"
+        android:label="fragment_comic_book_details"
+        tools:layout="@layout/fragment_comic_book_details" >
+        <argument
+            android:name="comicBookToDisplay"
+            app:argType="com.example.bookshelfhelper.data.model.ComicBook" />
     </fragment>
 </navigation>

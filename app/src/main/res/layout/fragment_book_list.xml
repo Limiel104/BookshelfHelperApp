@@ -168,12 +168,12 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
-            android:id="@+id/comicbooksButton"
+            android:id="@+id/detailsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:backgroundTint="@color/yellow"
-            android:text="Comicbooks"
+            android:text="Details"
             android:visibility="invisible"
             android:textColor="@color/white"
             android:textSize="15sp"

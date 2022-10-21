@@ -73,6 +73,13 @@ class ComicBookListFragment : Fragment() {
 
     private fun listItemClicked(comicBook: ComicBook){
         comicBookViewModel.initUpdate(comicBook)
+
+        if(comicBookViewModel.updateRequested){
+            binding.detailsButtonCB.visibility = View.VISIBLE
+        }
+        else{
+            binding.detailsButtonCB.visibility = View.GONE
+        }
     }
 
     private fun setOnClickListeners(){
@@ -88,9 +95,12 @@ class ComicBookListFragment : Fragment() {
             }
         }
 
-//        binding.booksButton.setOnClickListener {
-//            it.findNavController().navigate(R.id.action_comicbookListFragment_to_bookListFragment)
-//        }
+        binding.detailsButtonCB.setOnClickListener {
+            val comicBook = comicBookViewModel.comicBookToUpdate
+            val passedData = ComicBookListFragmentDirections.actionComicbookListFragmentToComicBookDetails(comicBook)
+            it.findNavController().navigate(passedData)
+            comicBookViewModel.initUpdate(comicBook)
+        }
     }
 
     private fun setSwipeToDelete(){

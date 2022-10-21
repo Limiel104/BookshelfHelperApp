@@ -73,6 +73,13 @@ class BookListFragment : Fragment(){
 
     private fun listItemClicked(book: Book){
         bookViewModel.initUpdate(book)
+
+        if(bookViewModel.updateRequested){
+            binding.detailsButton.visibility = View.VISIBLE
+        }
+        else{
+            binding.detailsButton.visibility = View.GONE
+        }
     }
 
     private fun setOnClickListeners(){
@@ -88,9 +95,12 @@ class BookListFragment : Fragment(){
             }
         }
 
-//        binding.comicbooksButton.setOnClickListener {
-//            it.findNavController().navigate(R.id.action_bookListFragment_to_comicbookListFragment)
-//        }
+        binding.detailsButton.setOnClickListener {
+            val book = bookViewModel.bookToUpdate
+            val passedData = BookListFragmentDirections.actionBookListFragmentToBookDetails(book)
+            it.findNavController().navigate(passedData)
+            bookViewModel.initUpdate(book)
+        }
     }
 
     private fun setSwipeToDelete(){
