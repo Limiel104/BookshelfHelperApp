@@ -1,5 +1,6 @@
 package com.example.bookshelfhelper.comicbook
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -71,19 +72,22 @@ class ComicBookListFragment : Fragment() {
         })
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun listItemClicked(comicBook: ComicBook){
         comicBookViewModel.initUpdate(comicBook)
 
         if(comicBookViewModel.updateRequested){
-            binding.detailsButtonCB.visibility = View.VISIBLE
+            binding.addOrEditButton.setImageDrawable(resources.getDrawable(R.drawable.ic_edit))
+            binding.detailsButton.visibility = View.VISIBLE
         }
         else{
-            binding.detailsButtonCB.visibility = View.GONE
+            binding.addOrEditButton.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
+            binding.detailsButton.visibility = View.GONE
         }
     }
 
     private fun setOnClickListeners(){
-        binding.addOrEditButtonCB.setOnClickListener{
+        binding.addOrEditButton.setOnClickListener{
             if(comicBookViewModel.updateRequested){
                 val comicBook = comicBookViewModel.comicBookToUpdate
                 val passedData = ComicBookListFragmentDirections.actionComicbookListFragmentToAddEditComicBookFragment(comicBook)
@@ -95,7 +99,7 @@ class ComicBookListFragment : Fragment() {
             }
         }
 
-        binding.detailsButtonCB.setOnClickListener {
+        binding.detailsButton.setOnClickListener {
             val comicBook = comicBookViewModel.comicBookToUpdate
             val passedData = ComicBookListFragmentDirections.actionComicbookListFragmentToComicBookDetails(comicBook)
             it.findNavController().navigate(passedData)

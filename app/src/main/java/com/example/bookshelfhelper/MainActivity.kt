@@ -20,12 +20,12 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         binding.bottomNavigation.setupWithNavController(navController)
 
-        navController.addOnDestinationChangedListener {controller, destination, arguments ->
-            when (destination.id) {
-                R.id.addEditBookFragment -> binding.bottomNavigation.visibility = View.GONE
-                R.id.addEditComicBookFragment -> binding.bottomNavigation.visibility = View.GONE
-                else -> binding.bottomNavigation.visibility = View.VISIBLE
-            }
-        }
+//        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+//            when (destination.id) {
+//                R.id.addEditBookFragment -> binding.bottomNavigation.visibility = View.GONE
+//                R.id.addEditComicBookFragment -> binding.bottomNavigation.visibility = View.GONE
+//                else -> binding.bottomNavigation.visibility = View.VISIBLE
+//            }
+//        }
     }
 }

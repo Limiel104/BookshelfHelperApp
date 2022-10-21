@@ -155,30 +155,26 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/addOrEditButtonCB"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addOrEditButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:src="@drawable/ic_add"
             android:backgroundTint="@color/yellow"
-            android:text="@={comicBookListViewModel.addOrEditButtonText}"
-            android:textColor="@color/white"
-            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <Button
-            android:id="@+id/detailsButtonCB"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/detailsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:backgroundTint="@color/yellow"
-            android:text="Details"
+            android:src="@drawable/ic_info"
             android:visibility="invisible"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@id/addOrEditButtonCB"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:backgroundTint="@color/yellow"
+            app:layout_constraintBottom_toTopOf="@id/addOrEditButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

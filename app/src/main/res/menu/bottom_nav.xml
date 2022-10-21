@@ -12,4 +12,10 @@
         android:icon="@drawable/ic_book">
     </item>
 
+    <item
+        android:id="@+id/statsFragment"
+        android:title="Stats"
+        android:icon="@drawable/ic_chart">
+    </item>
+
 </menu>

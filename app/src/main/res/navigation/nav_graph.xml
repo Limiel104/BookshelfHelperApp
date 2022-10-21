@@ -14,9 +14,6 @@
             android:id="@+id/action_bookListFragment_to_addEditBookFragment"
             app:destination="@id/addEditBookFragment" />
         <action
-            android:id="@+id/action_bookListFragment_to_comicbookListFragment"
-            app:destination="@id/comicbookListFragment" />
-        <action
             android:id="@+id/action_bookListFragment_to_bookDetails"
             app:destination="@id/bookDetails" />
     </fragment>
@@ -36,9 +33,6 @@
         android:name="com.example.bookshelfhelper.comicbook.ComicBookListFragment"
         android:label="fragment_comicbook_list"
         tools:layout="@layout/fragment_comicbook_list" >
-        <action
-            android:id="@+id/action_comicbookListFragment_to_bookListFragment"
-            app:destination="@id/bookListFragment" />
         <action
             android:id="@+id/action_comicbookListFragment_to_addEditComicBookFragment"
             app:destination="@id/addEditComicBookFragment" />
@@ -75,4 +69,9 @@
             android:name="comicBookToDisplay"
             app:argType="com.example.bookshelfhelper.data.model.ComicBook" />
     </fragment>
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.example.bookshelfhelper.stats.StatsFragment"
+        android:label="fragment_stats"
+        tools:layout="@layout/fragment_stats" />
 </navigation>

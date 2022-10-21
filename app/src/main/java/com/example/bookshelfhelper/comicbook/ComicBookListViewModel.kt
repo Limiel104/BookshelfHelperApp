@@ -15,32 +15,24 @@ class ComicBookListViewModel(private val repository: ComicBookRepository) : View
 
     val comicBooks = repository.comicBooks
 
-    val addOrEditButtonText = MutableLiveData<String>()
-
     lateinit var comicBookToUpdate : ComicBook
     var updateRequested = false
 
     init {
         Log.i("TAG","ComicBookListViewModel")
-        addOrEditButtonText.value = "Add"
     }
 
     fun initUpdate(comicBook: ComicBook){
-        Log.i("TAG","isUpdate")
         if (!updateRequested){
-            Log.i("TAG","klikam")
-            addOrEditButtonText.value = "Update"
             updateRequested = true
             comicBookToUpdate = comicBook
         }
         else{
-            Log.i("TAG","odklikuje")
             returnToInitLayout()
         }
     }
 
     private fun returnToInitLayout(){
-        addOrEditButtonText.value = "Add"
         updateRequested = false
         comicBookToUpdate = ComicBook(-1,"","","","","","","",-1,-1,"","")
     }

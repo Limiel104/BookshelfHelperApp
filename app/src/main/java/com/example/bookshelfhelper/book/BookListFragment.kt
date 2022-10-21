@@ -1,5 +1,6 @@
 package com.example.bookshelfhelper.book
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -71,13 +72,16 @@ class BookListFragment : Fragment(){
         })
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun listItemClicked(book: Book){
         bookViewModel.initUpdate(book)
 
         if(bookViewModel.updateRequested){
+            binding.addOrEditButton.setImageDrawable(resources.getDrawable(R.drawable.ic_edit))
             binding.detailsButton.visibility = View.VISIBLE
         }
         else{
+            binding.addOrEditButton.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
             binding.detailsButton.visibility = View.GONE
         }
     }
