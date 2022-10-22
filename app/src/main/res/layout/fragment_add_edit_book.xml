@@ -144,12 +144,29 @@
                         android:text="@={addEditBookItemViewModel.inputLanguage}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/addYearBought"
+                    style="?attr/textInputOutlinedStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:hint="Year Bought"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="4"
+                        android:text="@={addEditBookItemViewModel.inputYearBought}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <Button
                     android:id="@+id/addImage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="12dp"
                     android:paddingVertical="16dp"
                     android:text="@={addEditBookItemViewModel.addOrEditImageButtonText}" />
 

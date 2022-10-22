@@ -22,6 +22,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
     val inputLanguage = MutableLiveData<String>()
     val inputVolumesReleased = MutableLiveData<String>()
     val inputVolumesOwned = MutableLiveData<String>()
+    val inputStatus = MutableLiveData<String>()
     val inputPagesColor = MutableLiveData<String>()
     val addOrEditImageButtonText = MutableLiveData<String>()
     val addOrEditButtonText = MutableLiveData<String>()
@@ -86,6 +87,12 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
             inputLanguage.value!!
         }
 
+        val status : String = if(inputStatus.value == null){
+            comicBookToUpdate.status
+        } else {
+            inputStatus.value!!
+        }
+
         val pagesColor : String = if(inputPagesColor.value == null){
             comicBookToUpdate.pagesColor
         } else {
@@ -98,7 +105,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
             inputImagePath
         }
 
-        performUpdate(genre,format,type,language,pagesColor,imagePath)
+        performUpdate(genre,format,type,language,status,pagesColor,imagePath)
     }
 
     private fun validateSave(){
@@ -119,7 +126,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
         }
     }
 
-    private fun performUpdate(genre: String, format: String, type: String, language: String, pagesColor: String, imagePath: String){
+    private fun performUpdate(genre: String, format: String, type: String, language: String,status: String, pagesColor: String, imagePath: String){
 
         val title = inputTitle.value!!
         val author = inputAuthor.value!!
@@ -127,7 +134,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
         val volumesReleased = inputVolumesReleased.value!!.toInt()
         val volumesOwned = inputVolumesOwned.value!!.toInt()
 
-        update(ComicBook(comicBookToUpdate.id,title,author,publisher,genre,format,type,language,volumesReleased,volumesOwned,pagesColor,imagePath))
+        update(ComicBook(comicBookToUpdate.id,title,author,publisher,genre,format,type,language,volumesReleased,volumesOwned,status,pagesColor,imagePath))
 
         isDone.value = true
     }
@@ -143,10 +150,11 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
         val language = inputLanguage.value!!
         val volumesReleased = inputVolumesReleased.value!!.toInt()
         val volumesOwned = inputVolumesOwned.value!!.toInt()
+        val status = inputStatus.value!!
         val pagesColor = inputPagesColor.value!!
         val imagePath = inputImagePath
 
-        insert(ComicBook(0,title,author,publisher,genre,format,type,language,volumesReleased,volumesOwned,pagesColor,imagePath))
+        insert(ComicBook(0,title,author,publisher,genre,format,type,language,volumesReleased,volumesOwned,status,pagesColor,imagePath))
 
         isDone.value = true
     }

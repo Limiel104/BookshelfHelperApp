@@ -42,11 +42,15 @@
         <item>Japanese</item>
     </string-array>
 
+    <string-array name="statuses">
+        <item>Incompleted</item>
+        <item>Completed</item>
+        <item>Dropped</item>
+    </string-array>
+
     <string-array name="pagesColor">
         <item>Black and White</item>
         <item>Full Color</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

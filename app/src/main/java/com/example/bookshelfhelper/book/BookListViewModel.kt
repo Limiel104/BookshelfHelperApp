@@ -2,10 +2,8 @@ package com.example.bookshelfhelper.book
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.Query
 import com.example.bookshelfhelper.data.model.Book
 import com.example.bookshelfhelper.data.repository.BookRepository
 import kotlinx.coroutines.Dispatchers
@@ -34,7 +32,7 @@ class BookListViewModel(private val repository: BookRepository) : ViewModel() {
 
     private fun returnToInitLayout(){
         updateRequested = false
-        bookToUpdate = Book(-1,"","","","","","","","")
+        bookToUpdate = Book(-1,"","","","","","","",-1,"")
     }
 
     fun delete(book: Book){

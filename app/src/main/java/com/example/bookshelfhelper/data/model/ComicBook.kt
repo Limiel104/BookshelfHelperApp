@@ -20,6 +20,7 @@ class ComicBook(
     val language: String,
     val volumesReleased: Int,
     val volumesOwned: Int,
+    val status: String,
     val pagesColor: String,
     val imagePath: String
 

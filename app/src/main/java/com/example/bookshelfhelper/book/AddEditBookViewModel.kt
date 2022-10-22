@@ -21,6 +21,7 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
     val inputFormat = MutableLiveData<String>()
     val inputType = MutableLiveData<String>()
     val inputLanguage = MutableLiveData<String>()
+    val inputYearBought = MutableLiveData<String>()
     val addOrEditImageButtonText = MutableLiveData<String>()
     val addOrEditButtonText = MutableLiveData<String>()
     var inputImagePath = ""
@@ -56,6 +57,7 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
             inputTitle.value == null -> statusMessage.value = Event("Please enter book's title")
             inputAuthor.value == null -> statusMessage.value = Event("Please enter book's author")
             inputPublisher.value == null -> statusMessage.value = Event("Please enter book's publisher")
+            inputYearBought.value == null -> statusMessage.value = Event("Please enter year the book was bought")
         }
 
         val genre : String = if(inputGenre.value == null){
@@ -101,6 +103,7 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
             inputFormat.value == null -> statusMessage.value = Event("Please choose book's format")
             inputType.value == null -> statusMessage.value = Event("Please choose book's type")
             inputLanguage.value == null ->  statusMessage.value = Event("Please choose book's language")
+            inputYearBought.value == null -> statusMessage.value = Event("Please enter year the book was bought")
             inputImagePath == "" ->  statusMessage.value = Event("Please add book's cover photo")
             else -> performSave()
         }
@@ -111,8 +114,9 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
         val title = inputTitle.value!!
         val author = inputAuthor.value!!
         val publisher = inputPublisher.value!!
+        val yearBought = inputYearBought.value!!.toInt()
 
-        update(Book(bookToUpdate.id,title,author,publisher,genre,format,type,language,imagePath))
+        update(Book(bookToUpdate.id,title,author,publisher,genre,format,type,language,yearBought,imagePath))
 
         isDone.value = true
     }
@@ -126,9 +130,10 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
         val format = inputFormat.value!!
         val type = inputType.value!!
         val language = inputLanguage.value!!
+        val yearBought = inputYearBought.value!!.toInt()
         val imagePath = inputImagePath
 
-        insert(Book(0,title,author,publisher,genre,format,type,language,imagePath))
+        insert(Book(0,title,author,publisher,genre,format,type,language,yearBought,imagePath))
 
         isDone.value = true
     }
@@ -137,6 +142,7 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
         inputTitle.value = bookToUpdate.title
         inputAuthor.value = bookToUpdate.author
         inputPublisher.value = bookToUpdate.publisher
+        inputYearBought.value = bookToUpdate.yearBought.toString()
         addOrEditImageButtonText.value = "Change Book Cover"
         addOrEditButtonText.value = "Update"
     }

@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.bookshelfhelper.R
 import com.example.bookshelfhelper.data.BookshelfDatabase
 import com.example.bookshelfhelper.data.repository.BookRepository
 import com.example.bookshelfhelper.databinding.FragmentBookStatsBinding
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
 class BookStatsFragment : Fragment() {
 
@@ -34,6 +37,12 @@ class BookStatsFragment : Fragment() {
 
         setOnClickListeners()
 
+        bookStatsViewModel.booksToSet.observe(viewLifecycleOwner, Observer {
+            bookStatsViewModel.setBooks(it)
+            setAllBooksThroughoutTheYearsBarChart()
+            setAllAuthorsPieChart()
+        })
+
         return binding.root
     }
 
@@ -41,5 +50,26 @@ class BookStatsFragment : Fragment() {
         binding.bookStatsButton.setOnClickListener {
             it.findNavController().navigate(R.id.action_bookStatsFragment_to_comicBookStatsFragment)
         }
+    }
+
+    private fun setAllBooksThroughoutTheYearsBarChart(){
+        val xLabels = bookStatsViewModel.getLabelsForBooksThroughoutTheYearsBarChart()
+
+        val xAxis = binding.booksThroughoutTheYearsBarChart.xAxis
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.setDrawGridLines(false)
+        xAxis.setDrawAxisLine(true)
+        xAxis.granularity = 1F
+        xAxis.valueFormatter = IndexAxisValueFormatter(xLabels)
+
+        binding.booksThroughoutTheYearsBarChart.data = bookStatsViewModel.getDataForBooksThroughoutTheYearsBarChart()
+        binding.booksThroughoutTheYearsBarChart.animateXY(2000,2000)
+        binding.booksThroughoutTheYearsBarChart.description.isEnabled = false
+    }
+
+    private fun setAllAuthorsPieChart(){
+        binding.authorsPieChart.data = bookStatsViewModel.getDataForAuthorsPieChart()
+        binding.authorsPieChart.description.isEnabled = false
+        binding.authorsPieChart.animateXY(2000,2000)
     }
 }
