@@ -70,8 +70,17 @@
             app:argType="com.example.bookshelfhelper.data.model.ComicBook" />
     </fragment>
     <fragment
-        android:id="@+id/statsFragment"
-        android:name="com.example.bookshelfhelper.stats.StatsFragment"
+        android:id="@+id/bookStatsFragment"
+        android:name="com.example.bookshelfhelper.book.BookStatsFragment"
         android:label="fragment_stats"
-        tools:layout="@layout/fragment_stats" />
+        tools:layout="@layout/fragment_book_stats" >
+        <action
+            android:id="@+id/action_bookStatsFragment_to_comicBookStatsFragment"
+            app:destination="@id/comicBookStatsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comicBookStatsFragment"
+        android:name="com.example.bookshelfhelper.comicbook.ComicBookStatsFragment"
+        android:label="fragment_comic_book_stats"
+        tools:layout="@layout/fragment_comic_book_stats" />
 </navigation>

@@ -13,7 +13,7 @@
     </item>
 
     <item
-        android:id="@+id/statsFragment"
+        android:id="@+id/bookStatsFragment"
         android:title="Stats"
         android:icon="@drawable/ic_chart">
     </item>
