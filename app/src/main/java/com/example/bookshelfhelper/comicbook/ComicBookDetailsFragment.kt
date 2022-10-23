@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.bookshelfhelper.R
 import com.example.bookshelfhelper.data.BookshelfDatabase
 import com.example.bookshelfhelper.data.repository.ComicBookRepository
@@ -33,7 +36,21 @@ class ComicBookDetailsFragment : Fragment() {
         binding.lifecycleOwner = this
 
         comicBookDetailsViewModel.comicBookToDisplay = passedData.comicBookToDisplay
+        comicBookDetailsViewModel.setLayout()
+        Glide.with(binding.itemImg.context)
+            .load(passedData.comicBookToDisplay.imagePath)
+            .into(binding.itemImg)
+
+        prepareObservers()
 
         return binding.root
+    }
+
+    private fun prepareObservers(){
+        comicBookDetailsViewModel.message.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let {
+                Toast.makeText(context,it, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }

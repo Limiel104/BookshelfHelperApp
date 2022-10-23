@@ -58,7 +58,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="15dp"
                     android:maxLines="2"
-                    android:text="Tytuł Książki - Detale"
+                    android:text="@={bookDetailsItemViewModel.inputTitle}"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="22sp"
@@ -73,7 +73,7 @@
                     android:layout_marginTop="3dp"
                     android:maxLines="1"
                     android:textSize="12sp"
-                    android:text="Autor Ksiązki"
+                    android:text="@={bookDetailsItemViewModel.inputAuthor}"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     app:layout_constraintTop_toBottomOf="@+id/itemTitle" />
@@ -100,7 +100,7 @@
                         android:id="@+id/itemFormat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="A5"
+                        android:text="@={bookDetailsItemViewModel.inputFormat}"
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -135,7 +135,7 @@
                         android:id="@+id/itemLanguage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ENG"
+                        android:text="@={bookDetailsItemViewModel.inputLanguage}"
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -169,7 +169,7 @@
                         android:id="@+id/itemYearBought"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2022"
+                        android:text="@={bookDetailsItemViewModel.inputYearBought}"
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -217,7 +217,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:textColor="@color/gray_dark"
-                    android:text="JPF"
+                    android:text="@={bookDetailsItemViewModel.inputPublisher}"
                     app:layout_constraintTop_toBottomOf="@+id/descriptionTitle"
                     app:layout_constraintStart_toEndOf="@+id/publisherTitle" />
 
@@ -239,7 +239,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:textColor="@color/gray_dark"
-                    android:text="Action"
+                    android:text="@={bookDetailsItemViewModel.inputGenre}"
                     app:layout_constraintTop_toBottomOf="@+id/publisherTitle"
                     app:layout_constraintStart_toEndOf="@+id/genreTitle" />
 
@@ -261,7 +261,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:textColor="@color/gray_dark"
-                    android:text="Hard Cover"
+                    android:text="@={bookDetailsItemViewModel.inputType}"
                     app:layout_constraintTop_toBottomOf="@+id/genreTitle"
                     app:layout_constraintStart_toEndOf="@+id/typeTitle" />
 

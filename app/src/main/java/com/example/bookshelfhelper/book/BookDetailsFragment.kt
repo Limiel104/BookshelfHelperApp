@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.bookshelfhelper.R
 import com.example.bookshelfhelper.data.BookshelfDatabase
 import com.example.bookshelfhelper.data.repository.BookRepository
@@ -33,6 +34,10 @@ class BookDetailsFragment : Fragment() {
         binding.lifecycleOwner = this
 
         bookDetailsViewModel.bookToDisplay = passedData.bookToDisplay
+        bookDetailsViewModel.setLayout()
+        Glide.with(binding.itemImg.context)
+            .load(passedData.bookToDisplay.imagePath)
+            .into(binding.itemImg)
 
         return binding.root
     }
