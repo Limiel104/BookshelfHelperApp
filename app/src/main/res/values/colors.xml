@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     
-    <color name="green_dark">#283618</color>
+<!--    <color name="green_dark">#283618</color>-->
     <color name="green_light">#606C38</color>
     <color name="beige">#FEFAE0</color>
     <color name="brown_dark">#BC6C25</color>
@@ -21,5 +21,13 @@
 
     <color name="yellow">#FDB645</color>
     
-    
+    <color name="brown_soft">#DDBEA9</color>
+    <color name="green_dark">#6B705C</color>
+    <color name="gray_dark">#626262</color>
+    <color name="green_dark2">#5C604F</color>
+    <color name="green_dark3">#36382E</color>
+    <color name="green_dark4">#3D4034</color>
+    <color name="green_dark5">#4D5042</color>
+    <color name="green_dark6">#45483B</color>
+
 </resources>
