@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">BookshelfHelper</string>
+
     <string name="selectTitle">Title</string>
     <string name="selectAuthor">Author</string>
     <string name="selectPublisher">Publisher</string>
@@ -10,6 +11,37 @@
     <string name="selectVolumesReleased">Volumes Released</string>
     <string name="selectVolumesOwned">Volumes Owned</string>
     <string name="selectPagesColor"> Select Pages Color</string>
+    <string name="selectYearBought">Year Bought</string>
+
+    <string name="formatTitle">Format</string>
+    <string name="languageTitle">Language</string>
+    <string name="yearBoughtTitle">Year Bought</string>
+    <string name="descriptionTitle">Book Information</string>
+    <string name="publisherTitle">Publisher: </string>
+    <string name="genreTitle">Genre: </string>
+    <string name="typeTitle">Type: </string>
+    <string name="volumesTitle">Volumes</string>
+    <string name="descriptionTitleCB">Comic book Information</string>
+    <string name="statusTitle">Status: </string>
+    <string name="pagesColorTitle">Pages Color: "</string>
+
+    <string name="statusButton">Status</string>
+    <string name="ownedButton">Owned</string>
+    <string name="releasedButton">Released</string>
+
+    <string name="chipAll">All</string>
+    <string name="chipFantasy">Fantasy</string>
+    <string name="chipRomance">Romance</string>
+    <string name="chipDrama">Drama</string>
+    <string name="chipComedy">Comedy</string>
+    <string name="chipMystery">Mystery</string>
+    <string name="chipScienceFiction">Science Fiction</string>
+    <string name="chipAdventure">Adventure</string>
+    <string name="chipHorror">Horror</string>
+    <string name="chipThriller">Thriller</string>
+    <string name="chipAction">Action</string>
+    <string name="chipHistoricalFiction">Historical Fiction</string>
+    <string name="chipNonfiction">Nonfiction</string>
 
     <string-array name="genres">
         <item>Action</item>

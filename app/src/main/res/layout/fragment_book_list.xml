@@ -24,7 +24,13 @@
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginHorizontal="20dp"
+                app:queryHint="Titles, authors or publishers"
+                app:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
+                android:background="@drawable/search_view_background" />
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -32,11 +38,12 @@
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroup"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:paddingHorizontal="5dp"
-                    app:chipSpacingHorizontal="3dp"
+                    android:layout_marginVertical="15dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:paddingHorizontal="15dp"
+                    app:chipSpacingHorizontal="4dp"
                     app:selectionRequired="true"
                     app:singleLine="true"
                     app:singleSelection="true">
@@ -46,7 +53,9 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="All"
+                        app:chipBackgroundColor="@color/brown_soft"
+                        android:textColor="@color/white"
+                        android:text="@string/chipAll"
                         app:chipMinTouchTargetSize="0dp" />
 
                     <com.google.android.material.chip.Chip
@@ -54,7 +63,9 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fantasy"
+                        app:chipBackgroundColor="@color/brown_soft"
+                        android:textColor="@color/white"
+                        android:text="@string/chipFantasy"
                         app:chipMinTouchTargetSize="0dp" />
 
                     <com.google.android.material.chip.Chip
@@ -62,7 +73,9 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Romance"
+                        app:chipBackgroundColor="@color/brown_soft"
+                        android:textColor="@color/white"
+                        android:text="@string/chipRomance"
                         app:chipMinTouchTargetSize="0dp" />
 
                     <com.google.android.material.chip.Chip
@@ -70,7 +83,9 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Drama"
+                        app:chipBackgroundColor="@color/brown_soft"
+                        android:textColor="@color/white"
+                        android:text="@string/chipDrama"
                         app:chipMinTouchTargetSize="0dp" />
 
                     <com.google.android.material.chip.Chip
@@ -78,7 +93,9 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Comedy"
+                        app:chipBackgroundColor="@color/brown_soft"
+                        android:textColor="@color/white"
+                        android:text="@string/chipComedy"
                         app:chipMinTouchTargetSize="0dp" />
 
                     <com.google.android.material.chip.Chip
@@ -86,7 +103,9 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mystery"
+                        app:chipBackgroundColor="@color/brown_soft"
+                        android:textColor="@color/white"
+                        android:text="@string/chipMystery"
                         app:chipMinTouchTargetSize="0dp" />
 
                     <com.google.android.material.chip.Chip
@@ -94,7 +113,9 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Science Fiction"
+                        app:chipBackgroundColor="@color/brown_soft"
+                        android:textColor="@color/white"
+                        android:text="@string/chipScienceFiction"
                         app:chipMinTouchTargetSize="0dp" />
 
                     <com.google.android.material.chip.Chip
@@ -102,7 +123,9 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Adventure"
+                        app:chipBackgroundColor="@color/brown_soft"
+                        android:textColor="@color/white"
+                        android:text="@string/chipAdventure"
                         app:chipMinTouchTargetSize="0dp" />
 
                     <com.google.android.material.chip.Chip
@@ -110,7 +133,9 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Horror"
+                        app:chipBackgroundColor="@color/brown_soft"
+                        android:textColor="@color/white"
+                        android:text="@string/chipHorror"
                         app:chipMinTouchTargetSize="0dp" />
 
                     <com.google.android.material.chip.Chip
@@ -118,7 +143,9 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Thriller"
+                        app:chipBackgroundColor="@color/brown_soft"
+                        android:textColor="@color/white"
+                        android:text="@string/chipThriller"
                         app:chipMinTouchTargetSize="0dp" />
 
                     <com.google.android.material.chip.Chip
@@ -126,7 +153,9 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Action"
+                        app:chipBackgroundColor="@color/brown_soft"
+                        android:textColor="@color/white"
+                        android:text="@string/chipAction"
                         app:chipMinTouchTargetSize="0dp" />
 
                     <com.google.android.material.chip.Chip
@@ -134,7 +163,9 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Historical Fiction"
+                        app:chipBackgroundColor="@color/brown_soft"
+                        android:textColor="@color/white"
+                        android:text="@string/chipHistoricalFiction"
                         app:chipMinTouchTargetSize="0dp" />
 
                     <com.google.android.material.chip.Chip
@@ -142,7 +173,9 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nonfiction"
+                        app:chipBackgroundColor="@color/brown_soft"
+                        android:textColor="@color/white"
+                        android:text="@string/chipNonfiction"
                         app:chipMinTouchTargetSize="0dp" />
 
                 </com.google.android.material.chip.ChipGroup>
@@ -156,25 +189,13 @@
 
         </LinearLayout>
 
-<!--        <Button-->
-<!--            android:id="@+id/addOrEditButton"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="15dp"-->
-<!--            android:backgroundTint="@color/yellow"-->
-<!--            android:text="@={bookListViewModel.addOrEditButtonText}"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="15sp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent" />-->
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addOrEditButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:src="@drawable/ic_add"
-            android:backgroundTint="@color/yellow"
+            android:backgroundTint="@color/brown_soft"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -185,7 +206,7 @@
             android:layout_margin="15dp"
             android:src="@drawable/ic_info"
             android:visibility="invisible"
-            android:backgroundTint="@color/yellow"
+            android:backgroundTint="@color/brown_soft"
             app:layout_constraintBottom_toTopOf="@id/addOrEditButton"
             app:layout_constraintEnd_toEndOf="parent"/>
 

@@ -48,7 +48,7 @@ class BookStatsViewModel(private val repository: BookRepository) : ViewModel() {
         }
 
         barDataSet = BarDataSet(barList,("Years"))
-        barDataSet.setColors(ColorTemplate.JOYFUL_COLORS,250)
+        barDataSet.setColors(ColorTemplate.PASTEL_COLORS,250)
         barDataSet.valueTextColor = Color.BLACK
         barDataSet.valueTextSize = 15f
         barData = BarData(barDataSet)
@@ -101,7 +101,7 @@ class BookStatsViewModel(private val repository: BookRepository) : ViewModel() {
         }
 
         pieDataSet = PieDataSet(pieList,"Authors")
-        pieDataSet.setColors(ColorTemplate.JOYFUL_COLORS,250)
+        pieDataSet.setColors(ColorTemplate.PASTEL_COLORS,250)
         pieDataSet.valueTextColor = Color.BLACK
         pieDataSet.valueTextSize = 15f
         pieData = PieData(pieDataSet)

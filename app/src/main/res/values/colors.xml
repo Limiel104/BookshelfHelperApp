@@ -22,12 +22,12 @@
     <color name="yellow">#FDB645</color>
     
     <color name="brown_soft">#DDBEA9</color>
-    <color name="green_dark">#6B705C</color>
+    <color name="green_dark5">#6B705C</color>
     <color name="gray_dark">#626262</color>
     <color name="green_dark2">#5C604F</color>
     <color name="green_dark3">#36382E</color>
     <color name="green_dark4">#3D4034</color>
-    <color name="green_dark5">#4D5042</color>
+    <color name="green_dark">#4D5042</color>
     <color name="green_dark6">#45483B</color>
 
 </resources>

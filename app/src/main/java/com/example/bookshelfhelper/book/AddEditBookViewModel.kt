@@ -24,6 +24,7 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
     val inputYearBought = MutableLiveData<String>()
     val addOrEditImageButtonText = MutableLiveData<String>()
     val addOrEditButtonText = MutableLiveData<String>()
+    val fragmentTitle = MutableLiveData<String>()
     var inputImagePath = ""
     var isDone = MutableLiveData<Boolean>()
 
@@ -37,6 +38,7 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
 
     init {
         Log.i("TAG","AddEditBookViewModel")
+        fragmentTitle.value = "Add new Book"
         addOrEditImageButtonText.value = "Add Book Cover"
         addOrEditButtonText.value = "Add"
     }
@@ -139,6 +141,7 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
     }
 
     fun prepareUpdateLayout(){
+        fragmentTitle.value = "Edit Book"
         inputTitle.value = bookToUpdate.title
         inputAuthor.value = bookToUpdate.author
         inputPublisher.value = bookToUpdate.publisher

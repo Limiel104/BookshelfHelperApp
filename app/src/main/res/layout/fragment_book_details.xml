@@ -17,7 +17,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             tools:context=".book.BookDetailsFragment">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,7 +91,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textSize="12sp"
-                        android:text="Format"
+                        android:text="@string/formatTitle"
                         android:textColor="@color/white"
                         app:layout_constraintEnd_toStartOf="@+id/divider_1"
                         app:layout_constraintTop_toTopOf="@+id/languageTitle" />
@@ -124,7 +124,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Language"
+                        android:text="@string/languageTitle"
                         android:textSize="12sp"
                         android:textColor="@color/white"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -159,7 +159,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Year Bought"
+                        android:text="@string/yearBoughtTitle"
                         android:textSize="12sp"
                         android:textColor="@color/white"
                         app:layout_constraintStart_toEndOf="@+id/divider_2"
@@ -193,7 +193,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="20dp"
-                    android:text="Book Information"
+                    android:text="@string/descriptionTitle"
                     android:textColor="@color/gray_dark"
                     android:textSize="19sp"
                     android:textStyle="bold"
@@ -205,7 +205,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="8dp"
-                    android:text="Publisher: "
+                    android:text="@string/publisherTitle"
                     android:textStyle="bold"
                     android:textColor="@color/gray_dark"
                     app:layout_constraintStart_toStartOf="parent"
@@ -227,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="8dp"
-                    android:text="Genre: "
+                    android:text="@string/genreTitle"
                     android:textStyle="bold"
                     android:textColor="@color/gray_dark"
                     app:layout_constraintStart_toStartOf="parent"
@@ -249,7 +249,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="8dp"
-                    android:text="Type: "
+                    android:text="@string/typeTitle"
                     android:textStyle="bold"
                     android:textColor="@color/gray_dark"
                     app:layout_constraintStart_toStartOf="parent"

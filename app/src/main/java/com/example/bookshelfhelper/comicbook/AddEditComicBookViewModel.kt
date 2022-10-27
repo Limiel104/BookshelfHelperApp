@@ -26,6 +26,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
     val inputPagesColor = MutableLiveData<String>()
     val addOrEditImageButtonText = MutableLiveData<String>()
     val addOrEditButtonText = MutableLiveData<String>()
+    val fragmentTitle = MutableLiveData<String>()
     var inputImagePath = ""
     var isDone = MutableLiveData<Boolean>()
 
@@ -39,6 +40,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
 
     init {
         Log.i("TAG","AddEditComicBookViewModel")
+        fragmentTitle.value = "Add new Comic book"
         addOrEditImageButtonText.value = "Add Comic book Cover"
         addOrEditButtonText.value = "Add"
     }
@@ -160,6 +162,7 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
     }
 
     fun prepareUpdateLayout(){
+        fragmentTitle.value = "Edit Comic book"
         inputTitle.value = comicBookToUpdate.title
         inputAuthor.value = comicBookToUpdate.author
         inputPublisher.value = comicBookToUpdate.publisher

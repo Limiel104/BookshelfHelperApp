@@ -1,16 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.BookshelfHelper" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.BookshelfHelper" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/navy_dark</item>
-        <item name="colorPrimaryVariant">@color/navy_dark</item>
+        <item name="colorPrimary">@color/green_dark</item>
+        <item name="colorPrimaryVariant">@color/green_dark</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/yellow_dark</item>
-        <item name="colorSecondaryVariant">@color/yellow_dark</item>
+        <item name="colorSecondary">@color/brown_soft</item>
+        <item name="colorSecondaryVariant">@color/brown_soft</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

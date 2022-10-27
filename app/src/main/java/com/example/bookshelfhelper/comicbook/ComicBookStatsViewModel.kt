@@ -57,7 +57,7 @@ class ComicBookStatsViewModel(private val repository: ComicBookRepository) : Vie
         }
 
         piePublishersDataSet = PieDataSet(piePublishersList,"Publishers")
-        piePublishersDataSet.setColors(ColorTemplate.JOYFUL_COLORS,250)
+        piePublishersDataSet.setColors(ColorTemplate.PASTEL_COLORS,250)
         piePublishersDataSet.valueTextColor = Color.BLACK
         piePublishersDataSet.valueTextSize = 15f
         piePublishersData = PieData(piePublishersDataSet)
@@ -81,7 +81,7 @@ class ComicBookStatsViewModel(private val repository: ComicBookRepository) : Vie
         }
 
         pieTitlesDataSet = PieDataSet(pieTitlesList,"Titles")
-        pieTitlesDataSet.setColors(ColorTemplate.JOYFUL_COLORS,250)
+        pieTitlesDataSet.setColors(ColorTemplate.PASTEL_COLORS,250)
         pieTitlesDataSet.valueTextColor = Color.BLACK
         pieTitlesDataSet.valueTextSize = 15f
         pieTitlesData = PieData(pieTitlesDataSet)
@@ -122,7 +122,7 @@ class ComicBookStatsViewModel(private val repository: ComicBookRepository) : Vie
         }
 
         barStatusesDataSet = BarDataSet(barStatusesList,"Statuses")
-        barStatusesDataSet.setColors(ColorTemplate.JOYFUL_COLORS,250)
+        barStatusesDataSet.setColors(ColorTemplate.PASTEL_COLORS,250)
         barStatusesDataSet.valueTextColor = Color.BLACK
         barStatusesDataSet.valueTextSize = 15f
         barStatusesData = BarData(barStatusesDataSet)
