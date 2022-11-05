@@ -22,7 +22,6 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
     val inputLanguage = MutableLiveData<String>()
     val inputVolumesReleased = MutableLiveData<String>()
     val inputVolumesOwned = MutableLiveData<String>()
-    val inputStatus = MutableLiveData<String>()
     val inputPagesColor = MutableLiveData<String>()
     val addOrEditImageButtonText = MutableLiveData<String>()
     val addOrEditButtonText = MutableLiveData<String>()
@@ -57,14 +56,6 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
 
     private fun validateUpdate(){
 
-        when{
-            inputTitle.value == null -> statusMessage.value = Event("Please enter book's title")
-            inputAuthor.value == null -> statusMessage.value = Event("Please enter book's author")
-            inputPublisher.value == null -> statusMessage.value = Event("Please enter book's publisher")
-            inputVolumesReleased.value == null -> statusMessage.value = Event("Please enter number of released volumes of comic book")
-            inputVolumesOwned.value == null -> statusMessage.value = Event("Please enter number of owned volumes of comic book")
-        }
-
         val genre : String = if(inputGenre.value == null){
             comicBookToUpdate.genre
         } else {
@@ -89,12 +80,6 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
             inputLanguage.value!!
         }
 
-        val status : String = if(inputStatus.value == null){
-            comicBookToUpdate.status
-        } else {
-            inputStatus.value!!
-        }
-
         val pagesColor : String = if(inputPagesColor.value == null){
             comicBookToUpdate.pagesColor
         } else {
@@ -107,7 +92,15 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
             inputImagePath
         }
 
-        performUpdate(genre,format,type,language,status,pagesColor,imagePath)
+        when{
+            inputTitle.value == "" -> statusMessage.value = Event("Please enter book's title")
+            inputAuthor.value == "" -> statusMessage.value = Event("Please enter book's author")
+            inputPublisher.value == "" -> statusMessage.value = Event("Please enter book's publisher")
+            inputVolumesReleased.value == "" -> statusMessage.value = Event("Please enter value of released volumes of comic book")
+            inputVolumesOwned.value == "" -> statusMessage.value = Event("Please enter value of owned volumes of comic book")
+            inputVolumesOwned.value!!.toInt() > inputVolumesReleased.value!!.toInt() -> statusMessage.value = Event("Value of Owned Volumes can not be greater than Volumes Released")
+            else -> performUpdate(genre,format,type,language,pagesColor,imagePath)
+        }
     }
 
     private fun validateSave(){
@@ -120,19 +113,21 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
             inputFormat.value == null -> statusMessage.value = Event("Please choose comic book's format")
             inputType.value == null -> statusMessage.value = Event("Please choose comic book's type")
             inputLanguage.value == null ->  statusMessage.value = Event("Please choose comic book's language")
-            inputVolumesReleased.value == null -> statusMessage.value = Event("Please enter number of released volumes of comic book")
-            inputVolumesOwned.value == null -> statusMessage.value = Event("Please enter number of owned volumes of comic book")
+            inputVolumesReleased.value == null -> statusMessage.value = Event("Please enter value of released volumes of comic book")
+            inputVolumesOwned.value == null -> statusMessage.value = Event("Please enter value of owned volumes of comic book")
+            inputVolumesOwned.value!!.toInt() > inputVolumesReleased.value!!.toInt() -> statusMessage.value = Event("Value of Owned Volumes can not be greater than Volumes Released")
             inputPagesColor.value == null -> statusMessage.value = Event("Please choose comic book's pages color")
             inputImagePath == "" ->  statusMessage.value = Event("Please add comic book's cover photo")
             else -> performSave()
         }
     }
 
-    private fun performUpdate(genre: String, format: String, type: String, language: String,status: String, pagesColor: String, imagePath: String){
+    private fun performUpdate(genre: String, format: String, type: String, language: String, pagesColor: String, imagePath: String){
 
         val title = inputTitle.value!!
         val author = inputAuthor.value!!
         val publisher = inputPublisher.value!!
+        val status = calculateStatus()
         val volumesReleased = inputVolumesReleased.value!!.toInt()
         val volumesOwned = inputVolumesOwned.value!!.toInt()
 
@@ -152,13 +147,27 @@ class AddEditComicBookViewModel(private val repository: ComicBookRepository) : V
         val language = inputLanguage.value!!
         val volumesReleased = inputVolumesReleased.value!!.toInt()
         val volumesOwned = inputVolumesOwned.value!!.toInt()
-        val status = inputStatus.value!!
+        val status = calculateStatus()
         val pagesColor = inputPagesColor.value!!
         val imagePath = inputImagePath
 
         insert(ComicBook(0,title,author,publisher,genre,format,type,language,volumesReleased,volumesOwned,status,pagesColor,imagePath))
 
         isDone.value = true
+    }
+
+    private fun calculateStatus(): String{
+        return if(updateMode && comicBookToUpdate.status == "Dropped"){
+            when{
+                inputVolumesOwned.value!!.toInt() == inputVolumesReleased.value!!.toInt() -> "Completed"
+                else -> "Dropped"
+            }
+        } else{
+            when{
+                inputVolumesOwned.value!!.toInt() == inputVolumesReleased.value!!.toInt() -> "Completed"
+                else -> "Incompleted"
+            }
+        }
     }
 
     fun prepareUpdateLayout(){

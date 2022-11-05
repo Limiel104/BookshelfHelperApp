@@ -125,7 +125,7 @@ class ComicBookDetailsViewModel(private val repository: ComicBookRepository) : V
         val genre = inputGenre.value!!
         val format = inputFormat.value!!
         val type = inputType.value!!
-        val language = inputLanguage.value!!
+        val language = comicBookToDisplay.language
         val pagesColor = inputPagesColor.value!!
         val imagePath = comicBookToDisplay.imagePath
 

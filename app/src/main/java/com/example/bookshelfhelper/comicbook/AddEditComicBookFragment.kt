@@ -67,7 +67,6 @@ class AddEditComicBookFragment : Fragment() {
         val formats = resources.getStringArray(R.array.formats)
         val types = resources.getStringArray(R.array.types)
         val languages = resources.getStringArray(R.array.languages)
-        val statuses = resources.getStringArray(R.array.statuses)
         val pagesColor = resources.getStringArray(R.array.pagesColor)
 
         val genresArrayAdapter = context?.let { ArrayAdapter(it,R.layout.drop_down_list_item,genres) }
@@ -76,7 +75,6 @@ class AddEditComicBookFragment : Fragment() {
         val  typesArrayAdapter = context?.let { ArrayAdapter(it,R.layout.drop_down_list_item,types) }
         val  languagesArrayAdapter =
             context?.let { ArrayAdapter(it,R.layout.drop_down_list_item,languages) }
-        val statusesArrayAdapter = context?.let { ArrayAdapter(it,R.layout.drop_down_list_item,statuses) }
         val  pagesColorArrayAdapter =
             context?.let { ArrayAdapter(it,R.layout.drop_down_list_item,pagesColor) }
 
@@ -84,7 +82,6 @@ class AddEditComicBookFragment : Fragment() {
         binding.addFormat.setAdapter(formatsArrayAdapter)
         binding.addType.setAdapter(typesArrayAdapter)
         binding.addLanguage.setAdapter(languagesArrayAdapter)
-        binding.addStatus.setAdapter(statusesArrayAdapter)
         binding.addPagesColor.setAdapter(pagesColorArrayAdapter)
     }
 
@@ -102,7 +99,7 @@ class AddEditComicBookFragment : Fragment() {
         })
 
         addEditComicBookItemViewModel.message.observe(viewLifecycleOwner, Observer {
-            it.getContentIfNotHandled()?.let {
+            it.getContentIfNotHandled()?.let { it ->
                 Toast.makeText(context,it, Toast.LENGTH_LONG).show()
             }
         })

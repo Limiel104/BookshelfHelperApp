@@ -55,13 +55,6 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
 
     private fun validateUpdate(){
 
-        when{
-            inputTitle.value == null -> statusMessage.value = Event("Please enter book's title")
-            inputAuthor.value == null -> statusMessage.value = Event("Please enter book's author")
-            inputPublisher.value == null -> statusMessage.value = Event("Please enter book's publisher")
-            inputYearBought.value == null -> statusMessage.value = Event("Please enter year the book was bought")
-        }
-
         val genre : String = if(inputGenre.value == null){
             bookToUpdate.genre
         } else {
@@ -92,7 +85,13 @@ class AddEditBookViewModel(private val repository: BookRepository) : ViewModel()
             inputImagePath
         }
 
-        performUpdate(genre,format,type,language,imagePath)
+        when{
+            inputTitle.value == "" -> statusMessage.value = Event("Please enter book's title")
+            inputAuthor.value == "" -> statusMessage.value = Event("Please enter book's author")
+            inputPublisher.value == "" -> statusMessage.value = Event("Please enter book's publisher")
+            inputYearBought.value == "" -> statusMessage.value = Event("Please enter year the book was bought")
+            else -> performUpdate(genre,format,type,language,imagePath)
+        }
     }
 
     private fun validateSave(){

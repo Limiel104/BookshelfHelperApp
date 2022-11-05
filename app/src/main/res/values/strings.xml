@@ -74,12 +74,6 @@
         <item>Japanese</item>
     </string-array>
 
-    <string-array name="statuses">
-        <item>Incompleted</item>
-        <item>Completed</item>
-        <item>Dropped</item>
-    </string-array>
-
     <string-array name="pagesColor">
         <item>Black and White</item>
         <item>Full Color</item>
