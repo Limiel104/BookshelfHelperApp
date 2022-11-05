@@ -2,6 +2,7 @@ package com.example.bookshelfhelper.comicbook
 
 import android.graphics.Color
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bookshelfhelper.data.model.ComicBook
 import com.example.bookshelfhelper.data.repository.ComicBookRepository
@@ -21,13 +22,20 @@ class ComicBookStatsViewModel(private val repository: ComicBookRepository) : Vie
     private lateinit var barStatusesList: ArrayList<BarEntry>
     private lateinit var barStatusesDataSet: BarDataSet
     private lateinit var barStatusesData: BarData
+    var inputTitle = MutableLiveData<String>()
+    var inputOption = MutableLiveData<String>()
 
     init {
+        inputTitle.value = ""
         Log.i("TAG","ComicBookStatsViewModel")
     }
 
     fun setComicBooks(comicBooksToSet: List<ComicBook>){
         comicBooks = comicBooksToSet as ArrayList<ComicBook>
+    }
+
+    fun setChartTitle(title: String){
+        inputTitle.value = title
     }
 
     fun getDataForPublishersPieChart(): PieData{

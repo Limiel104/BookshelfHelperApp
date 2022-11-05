@@ -1,14 +1,16 @@
 package com.example.bookshelfhelper.book
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.bookshelfhelper.R
 import com.example.bookshelfhelper.data.BookshelfDatabase
 import com.example.bookshelfhelper.data.repository.BookRepository
@@ -35,21 +37,43 @@ class BookStatsFragment : Fragment() {
         binding.bookStatsViewModel = bookStatsViewModel
         binding.lifecycleOwner = this
 
-        setOnClickListeners()
+        prepareAutocompleteFields()
+        prepareObservers()
 
+        return binding.root
+    }
+
+    private fun prepareAutocompleteFields(){
+        val options = resources.getStringArray(R.array.bookStats)
+        val optionsArrayAdapter = context?.let { ArrayAdapter(it,R.layout.drop_down_list_item,options) }
+        binding.chooseChart.setAdapter(optionsArrayAdapter)
+    }
+
+    private fun prepareObservers(){
         bookStatsViewModel.booksToSet.observe(viewLifecycleOwner, Observer {
             bookStatsViewModel.setBooks(it)
             setAllBooksThroughoutTheYearsBarChart()
             setAllAuthorsPieChart()
         })
 
-        return binding.root
-    }
-
-    private fun setOnClickListeners(){
-        binding.bookStatsButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_bookStatsFragment_to_comicBookStatsFragment)
-        }
+        bookStatsViewModel.inputOption.observe(viewLifecycleOwner, Observer {
+            when (bookStatsViewModel.inputOption.value) {
+                "Books throughout the years" -> {
+                    bookStatsViewModel.setChartTitle(it)
+                    binding.booksThroughoutTheYearsBarChart.visibility = View.VISIBLE
+                    binding.authorsPieChart.visibility = View.GONE
+                }
+                "Books by Author" -> {
+                    bookStatsViewModel.setChartTitle(it)
+                    binding.booksThroughoutTheYearsBarChart.visibility = View.GONE
+                    binding.authorsPieChart.visibility = View.VISIBLE
+                }
+                "Go to Comic book stats" -> {
+                    bookStatsViewModel.inputOption.value = null
+                    findNavController().navigate(R.id.action_bookStatsFragment_to_comicBookStatsFragment)
+                }
+            }
+        })
     }
 
     private fun setAllBooksThroughoutTheYearsBarChart(){

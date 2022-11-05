@@ -79,4 +79,17 @@
         <item>Full Color</item>
     </string-array>
 
+    <string-array name="bookStats">
+        <item>Books throughout the years</item>
+        <item>Books by Author</item>
+        <item>Go to Comic book stats</item>
+    </string-array>
+
+    <string-array name="comicBookStats">
+        <item>Volumes Owned by Titles</item>
+        <item>Comic books by Publisher</item>
+        <item>Comic books by Status</item>
+        <item>Go to Book stats</item>
+    </string-array>
+
 </resources>

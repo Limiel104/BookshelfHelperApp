@@ -11,73 +11,56 @@
             type="com.example.bookshelfhelper.book.BookStatsViewModel" />
     </data>
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_alignParentTop="true"
+            android:hint="Choose chart to display">
+
+            <AutoCompleteTextView
+                android:id="@+id/chooseChart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:text="@={bookStatsViewModel.inputOption}"
+                tools:ignore="LabelFor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/chartTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@={bookStatsViewModel.inputTitle}"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_below="@+id/textInputLayout" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/booksThroughoutTheYearsBarChart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".book.BookStatsFragment">
+            android:layout_margin="15dp"
+            android:visibility="invisible"
+            android:layout_below="@+id/chartTitle" />
 
-            <TextView
-                android:id="@+id/barChartTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Books throughout the years"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/authorsPieChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:visibility="invisible"
+            android:layout_below="@+id/chartTitle" />
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/booksThroughoutTheYearsBarChart"
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/barChartTitle"/>
-
-            <TextView
-                android:id="@+id/pieChartTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Books by Author"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/booksThroughoutTheYearsBarChart" />
-
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/authorsPieChart"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pieChartTitle" />
-
-            <Button
-                android:id="@+id/bookStatsButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:backgroundTint="@color/yellow"
-                android:text="Comicbook"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
+    </RelativeLayout>
 
 </layout>

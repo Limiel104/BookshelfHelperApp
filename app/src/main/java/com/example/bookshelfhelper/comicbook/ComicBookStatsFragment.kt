@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.bookshelfhelper.R
 import com.example.bookshelfhelper.data.BookshelfDatabase
 import com.example.bookshelfhelper.data.repository.ComicBookRepository
@@ -35,8 +37,19 @@ class ComicBookStatsFragment : Fragment() {
         binding.comicBookStatsViewModel = comicBookStatsViewModel
         binding.lifecycleOwner = this
 
-        setOnClickListeners()
+        prepareAutocompleteFields()
+        prepareObservers()
 
+        return binding.root
+    }
+
+    private fun prepareAutocompleteFields(){
+        val options = resources.getStringArray(R.array.comicBookStats)
+        val optionsArrayAdapter = context?.let { ArrayAdapter(it,R.layout.drop_down_list_item,options) }
+        binding.chooseChart.setAdapter(optionsArrayAdapter)
+    }
+
+    private fun prepareObservers(){
         comicBookStatsViewModel.comicBooksToSet.observe(viewLifecycleOwner, Observer {
             comicBookStatsViewModel.setComicBooks(it)
             setAllPublishersPieChart()
@@ -44,13 +57,32 @@ class ComicBookStatsFragment : Fragment() {
             setAllStatusesBarChart()
         })
 
-        return binding.root
-    }
-
-    private fun setOnClickListeners(){
-        binding.comicBookStatsButton.setOnClickListener {
-            it.findNavController().popBackStack()
-        }
+        comicBookStatsViewModel.inputOption.observe(viewLifecycleOwner, Observer {
+            when (comicBookStatsViewModel.inputOption.value) {
+                "Volumes Owned by Titles" -> {
+                    comicBookStatsViewModel.setChartTitle(it)
+                    binding.titlesPieChart.visibility = View.VISIBLE
+                    binding.publishersPieChart.visibility = View.GONE
+                    binding.statusBarChart.visibility = View.GONE
+                }
+                "Comic books by Publisher" -> {
+                    comicBookStatsViewModel.setChartTitle(it)
+                    binding.titlesPieChart.visibility = View.GONE
+                    binding.publishersPieChart.visibility = View.VISIBLE
+                    binding.statusBarChart.visibility = View.GONE
+                }
+                "Comic books by Status" -> {
+                    comicBookStatsViewModel.setChartTitle(it)
+                    binding.titlesPieChart.visibility = View.GONE
+                    binding.publishersPieChart.visibility = View.GONE
+                    binding.statusBarChart.visibility = View.VISIBLE
+                }
+                "Go to Book stats" -> {
+                    comicBookStatsViewModel.inputOption.value = null
+                    findNavController().popBackStack()
+                }
+            }
+        })
     }
 
     private fun setAllPublishersPieChart(){

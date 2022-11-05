@@ -2,6 +2,7 @@ package com.example.bookshelfhelper.book
 
 import android.graphics.Color
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bookshelfhelper.data.model.Book
 import com.example.bookshelfhelper.data.repository.BookRepository
@@ -18,13 +19,20 @@ class BookStatsViewModel(private val repository: BookRepository) : ViewModel() {
     private lateinit var barList: ArrayList<BarEntry>
     private lateinit var barDataSet: BarDataSet
     private lateinit var barData: BarData
+    var inputTitle = MutableLiveData<String>()
+    var inputOption = MutableLiveData<String>()
 
     init {
+        inputTitle.value = ""
         Log.i("TAG","BookStatsViewModel")
     }
 
     fun setBooks(booksToSet: List<Book>){
         books = booksToSet as ArrayList<Book>
+    }
+
+    fun setChartTitle(title: String){
+        inputTitle.value = title
     }
 
     fun getDataForBooksThroughoutTheYearsBarChart(): BarData{
